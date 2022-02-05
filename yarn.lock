@@ -5138,6 +5138,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/lodash@npm:^4.14.178":
+  version: 4.14.178
+  resolution: "@types/lodash@npm:4.14.178"
+  checksum: a69a04a60bfc5257c3130a554b4efa0c383f0141b7b3db8ab7cf07ad2a46ea085fce66d0242da41da7e5647b133d5dfb2c15add9cbed8d7fef955e4a1e5b3128
+  languageName: node
+  linkType: hard
+
 "@types/mdast@npm:^3.0.0":
   version: 3.0.10
   resolution: "@types/mdast@npm:3.0.10"
@@ -8827,7 +8834,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"csstype@npm:^3.0.2":
+"csstype@npm:^3.0.2, csstype@npm:^3.0.5":
   version: 3.0.10
   resolution: "csstype@npm:3.0.10"
   checksum: 20a8fa324f2b33ddf94aa7507d1b6ab3daa6f3cc308888dc50126585d7952f2471de69b2dbe0635d1fdc31223fef8e070842691877e725caf456e2378685a631
@@ -11802,7 +11809,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"htmlparser2@npm:^6.1.0":
+"htmlparser2@npm:^6.0.0, htmlparser2@npm:^6.1.0":
   version: 6.1.0
   resolution: "htmlparser2@npm:6.1.0"
   dependencies:
@@ -19036,6 +19043,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"style-vendorizer@npm:^2.0.0":
+  version: 2.1.1
+  resolution: "style-vendorizer@npm:2.1.1"
+  checksum: 167e4a9f930019e1698020e2b607298399b876965b7b837dd506991a65dc39088fac31546e91d3bfd3999b9039bc94aac3b82e723fe75c8cd03a4a7ba33f2066
+  languageName: node
+  linkType: hard
+
 "stylehacks@npm:^5.0.2":
   version: 5.0.2
   resolution: "stylehacks@npm:5.0.2"
@@ -19738,6 +19752,22 @@ __metadata:
   version: 0.14.5
   resolution: "tweetnacl@npm:0.14.5"
   checksum: 6061daba1724f59473d99a7bb82e13f211cdf6e31315510ae9656fefd4779851cb927adad90f3b488c8ed77c106adc0421ea8055f6f976ff21b27c5c4e918487
+  languageName: node
+  linkType: hard
+
+"twind@npm:^0.16.16":
+  version: 0.16.16
+  resolution: "twind@npm:0.16.16"
+  dependencies:
+    csstype: ^3.0.5
+    htmlparser2: ^6.0.0
+    style-vendorizer: ^2.0.0
+  peerDependencies:
+    typescript: ^4.1.0
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: ca761112dd7e9c6c409e922a82516203f4b856a117d8c00290f5969921a7217f644794867fac4282b08da152d7d0d3e875137a70a4f1f4a47ca9def0a9feedaf
   languageName: node
   linkType: hard
 
@@ -21156,6 +21186,7 @@ __metadata:
     "@testing-library/react": 12.1.2
     "@testing-library/react-hooks": 7.0.2
     "@types/jest": 27.0.2
+    "@types/lodash": ^4.14.178
     "@types/node": 16.11.7
     "@types/react": 17.0.30
     "@types/react-dom": 17.0.9
@@ -21173,6 +21204,7 @@ __metadata:
     eslint-plugin-react: 7.27.0
     eslint-plugin-react-hooks: 4.3.0
     jest: 27.2.3
+    lodash: ^4.17.21
     prettier: ^2.5.1
     react: 17.0.2
     react-dom: 17.0.2
@@ -21180,6 +21212,7 @@ __metadata:
     regenerator-runtime: 0.13.7
     ts-jest: 27.0.5
     tslib: ^2.0.0
+    twind: ^0.16.16
     typescript: ~4.5.2
     url-loader: ^3.0.0
   languageName: unknown
