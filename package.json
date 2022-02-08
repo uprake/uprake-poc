@@ -18,6 +18,9 @@
   },
   "devDependencies": {
     "@babel/core": "7.12.13",
+    "@babel/plugin-transform-typescript": "^7.16.8",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "7.12.13",
     "@nrwl/cli": "13.7.1",
     "@nrwl/cypress": "13.7.3",

@@ -4,7 +4,7 @@ import { fontVariantConfig } from "../../tokens/typography/config";
 import { getKeys } from '../../utils';
 import { variantGenerator } from "../../utils/variant.util";
 
-type ITypographyElVariant = keyof typeof fontVariantConfig;
+export type ITypographyElVariant = keyof typeof fontVariantConfig;
 
 export const typographyEl = style(fontToken, {
   variants: {

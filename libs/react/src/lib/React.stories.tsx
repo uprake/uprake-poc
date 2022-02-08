@@ -9,4 +9,6 @@ export default {
 const Template: Story<ReactProps> = (args) => <React {...args} />;
 
 export const Primary = Template.bind({});
-Primary.args = {};
+Primary.args = {
+
+};

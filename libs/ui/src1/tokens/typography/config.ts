@@ -1,20 +1,20 @@
-import { theme } from 'twind';
+import { Theme, ThemeConfiguration } from "twind/style";
 
-export const fontTokenConfig = {
+export const fontTokenConfig: Partial<ThemeConfiguration> = {
   fontFamily: {
-    primary: theme('fontFamily.sans'),
-    default: theme('fontFamily.sans'),
+    primary: (theme: any) => theme('fontFamily.sans'),
+    default: (theme: any) => theme('fontFamily.sans'),
     // heading: theme("fontFamily.primary"),
   },
   fontSize: {
     // custom: ['32px', {letterSpacing: '-0.02em',lineHeight: '40px'}],
-    body: theme('fontSize.base'),
-    h6: theme('fontSize.sm'),
-    h5: theme('fontSize.base'),
-    h4: theme('fontSize.lg'),
-    h3: theme('fontSize.xl'),
-    h2: theme('fontSize.2xl'),
-    h1: theme('fontSize.3xl'),
+    body: (theme: any) => theme('fontSize.base'),
+    h6: (theme: any) => theme('fontSize.sm'),
+    h5: (theme: any) => theme('fontSize.base'),
+    h4: (theme: any) => theme('fontSize.lg'),
+    h3: (theme: any) => theme('fontSize.xl'),
+    h2: (theme: any) => theme('fontSize.2xl'),
+    h1: (theme: any) => theme('fontSize.3xl'),
     subTitle: ['0.8em', { letterSpacing: '-0.01em', lineHeight: '0.9em' }],
   },
 };

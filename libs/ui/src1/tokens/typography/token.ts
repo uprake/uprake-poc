@@ -7,6 +7,14 @@ import { fontTokenConfig } from "./config";
 
 const weights = keys(theme("fontWeight"));
 
+
+export const consoleFn = () => {
+  console.log(variantGen(
+    variantKeysGen(fontTokenConfig.fontSize, "fontSize"),
+    (token) => `text-${token}`
+  ),)
+}
+
 // color is the
 export const fontToken = style({
   base: "text-base subpixel-antialiased",
@@ -28,6 +36,7 @@ export const fontToken = style({
 
   defaults: {
     font: "default",
+    size: '2xl', 
     weight: "normal",
   },
 });
