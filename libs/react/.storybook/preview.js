@@ -9,5 +9,12 @@
 //   },
 // };
 
+import { setup } from "twind";
+import ui from '@zoratrox/ui'
+
 
 // setup(twindConfig);
+
+console.log('ui', ui)
+
+setup(ui)
