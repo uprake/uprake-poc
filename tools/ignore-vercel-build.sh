@@ -6,13 +6,17 @@ APP=$1
 NX_VERSION=$(node -e "console.log(require('./package.json').devDependencies['@nrwl/workspace'])")
 TS_VERSION=$(node -e "console.log(require('./package.json').devDependencies['typescript'])")
 
+NX_BASE=$(node -e "console.log(require('./nx.json').affected['defaultBase'])")
+
+echo "NX_BASE: $NX_BASE"
+
 echo "VERCEL_GIT_COMMIT_REF: $VERCEL_GIT_COMMIT_REF"
 
 # Install @nrwl/workspace in order to run the affected command
 yarn add -D typescript@$TS_VERSION --cached
 
 # Run the affected command, comparing latest commit to the one before that
-yarn nx affected:apps --plain --base HEAD~1 --head HEAD | grep $APP -q
+yarn nx affected:apps --plain --base $NX_BASE --head HEAD | grep $APP -q
 
 # Store result of the previous command (grep)
 IS_AFFECTED=$?

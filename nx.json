@@ -1,7 +1,7 @@
 {
   "npmScope": "zoratrox",
   "affected": {
-    "defaultBase": "master"
+    "defaultBase": "development"
   },
   "cli": {
     "defaultCollection": "@nrwl/react"
