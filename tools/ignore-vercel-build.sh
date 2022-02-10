@@ -6,7 +6,7 @@ APP=$1
 NX_VERSION=$(node -e "console.log(require('./package.json').devDependencies['@nrwl/workspace'])")
 TS_VERSION=$(node -e "console.log(require('./package.json').devDependencies['typescript'])")
 
-NX_BASE=$(node -e "console.log(require('./nx.json').affected['defaultBase']")
+NX_BASE=$(node -e "console.log(require('./nx.json').affected['defaultBase'])")
 
 echo "VERCEL_GIT_COMMIT_REF: $VERCEL_GIT_COMMIT_REF"
 
