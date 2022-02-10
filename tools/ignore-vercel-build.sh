@@ -6,6 +6,8 @@ APP=$1
 NX_VERSION=$(node -e "console.log(require('./package.json').devDependencies['@nrwl/workspace'])")
 TS_VERSION=$(node -e "console.log(require('./package.json').devDependencies['typescript'])")
 
+echo "VERCEL_GIT_COMMIT_REF: $VERCEL_GIT_COMMIT_REF"
+
 # Install @nrwl/workspace in order to run the affected command
 yarn add -D typescript@$TS_VERSION --cached
 
