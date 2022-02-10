@@ -10,7 +10,7 @@ TS_VERSION=$(node -e "console.log(require('./package.json').devDependencies['typ
 # yarn add -D @nrwl/workspace@$NX_VERSION typescript@$TS_VERSION --cached
 
 # Run the affected command, comparing latest commit to the one before that
-npx nx affected:apps --plain --base HEAD~1 --head HEAD | grep $APP -q
+npx nx@$NX_VERSION affected:apps --plain --base HEAD~1 --head HEAD | grep $APP -q
 
 # Store result of the previous command (grep)
 IS_AFFECTED=$?
