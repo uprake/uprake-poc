@@ -5,7 +5,6 @@ import './React.module.css';
 export interface ReactProps {}
 
 export function React(props: ReactProps) {
-  console.log('hi console');
   return (
     <div>
       <div className={tw`text-h1`}>Welcome to React!</div>
