@@ -1,4 +1,3 @@
-
 // export const parameters = {
 //   actions: { argTypesRegex: "^on[A-Z].*" },
 //   controls: {
@@ -9,12 +8,17 @@
 //   },
 // };
 
-import { setup } from "twind";
-import ui from '@zoratrox/ui'
-
+import ui from '@zoratrox/ui';
+import { create, setup } from 'twind';
 
 // setup(twindConfig);
 
-console.log('ui', ui)
+console.log('ui', ui);
 
-setup(ui)
+setup(ui);
+
+const voidCtx = create(ui);
+
+console.log('ctx', voidCtx);
+
+console.log(voidCtx.tw.theme('fontSize'));
