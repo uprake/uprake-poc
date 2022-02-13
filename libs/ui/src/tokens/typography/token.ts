@@ -1,6 +1,13 @@
-import { FontTokenConfig } from './typography.type';
-import { tokenClean, tokenGen } from '../../utils/token.utils';
-import { defaultFontTokenConfig as fontTokenConfig } from './config/default.config';
+import { decorateToken, tokenGen } from '../../utils/token.utils';
+import {
+  defaultFontTokenConfig as fontTokenConfig,
+  defaultFontSpacingTokenConfig as fontSpacingConfig,
+} from './config/default.config';
+import {
+  FontSpacingTokenConfig,
+  FontStyleTokenConfig,
+  FontTokenConfig,
+} from './typography.type';
 
 export function fontToken(config: FontTokenConfig, decorator?: string) {
   let tokens = [
@@ -11,9 +18,42 @@ export function fontToken(config: FontTokenConfig, decorator?: string) {
     config.italics ? 'italic' : 'not-italic',
   ];
 
-  if (decorator) {
-    tokens = tokens.map((token) => `${decorator}:${token}`);
-  }
+  return decorateToken(tokens, decorator);
+}
 
-  return tokenClean(tokens);
+export function fontStyleToken(
+  config: FontStyleTokenConfig,
+  decorator?: string
+) {
+  let tokens = [
+    tokenGen('fontWeight', 'font', config.weight, fontTokenConfig.weight),
+    config.decoration ?? '',
+    config.transform ?? '',
+    config.italics ? 'italic' : 'not-italic',
+  ];
+
+  return decorateToken(tokens, decorator);
+}
+
+export function fontSpacingToken(
+  config: FontSpacingTokenConfig,
+  decorator?: string
+) {
+  return decorateToken(
+    [
+      tokenGen(
+        'letterSpacing',
+        'tracking',
+        config.letterSpacing,
+        fontSpacingConfig.letterSpacing
+      ),
+      tokenGen(
+        'lineHeight',
+        'leading',
+        config.lineHeight,
+        fontSpacingConfig.lineHeight
+      ),
+    ],
+    decorator
+  );
 }

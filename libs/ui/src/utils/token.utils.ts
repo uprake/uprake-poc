@@ -41,3 +41,10 @@ export function tokenClean(tokens: string[]) {
   tokens = tokens.map(cleanSpace);
   return tokens.join(' ');
 }
+
+export function decorateToken(tokens: string[], decorator?: string): string {
+  if (decorator) {
+    tokens = tokens.map((token) => `${decorator}:${token}`);
+  }
+  return tokenClean(tokens);
+}
