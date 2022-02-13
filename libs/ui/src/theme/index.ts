@@ -12,7 +12,7 @@ import { globalTheme } from './global.theme';
 const globalThemeConfig = globalTheme();
 const aliasThemeConfig = aliasTheme();
 
-export function themeGenerator(): ThemeConfiguration {
+export function themeGenerator() {
   return {
     ...globalThemeConfig,
     extend: aliasThemeConfig,

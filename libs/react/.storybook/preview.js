@@ -9,16 +9,10 @@
 // };
 
 import ui from '@zoratrox/ui';
-import { create, setup } from 'twind';
+import { setup } from 'twind';
 
 // setup(twindConfig);
 
 console.log('ui', ui);
 
 setup(ui);
-
-const voidCtx = create(ui);
-
-console.log('ctx', voidCtx);
-
-console.log(voidCtx.tw.theme('fontSize'));

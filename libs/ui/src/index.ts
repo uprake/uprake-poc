@@ -1,12 +1,15 @@
+import { themeGenerator } from './theme';
 
-import { themeGenerator } from "./theme";
+const theme = themeGenerator();
 
-
-
-export default {
+const twindConfig = {
   // Prevent preflight rules to be added into sheet
   preflight: false,
   // Do not prefix properties and values
   prefix: false,
-  theme: themeGenerator()
-}
+  theme,
+};
+
+export type TwindConfig = typeof twindConfig;
+
+export default twindConfig;
