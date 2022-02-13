@@ -8,11 +8,11 @@
 //   },
 // };
 
-import ui from '@zoratrox/ui';
+import { config } from '@zoratrox/ui';
 import { setup } from 'twind';
 
 // setup(twindConfig);
 
-console.log('ui', ui);
+console.log('ui', config);
 
-setup(ui);
+setup(config);

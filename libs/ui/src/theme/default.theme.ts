@@ -1,4 +1,4 @@
-import { create, Theme, ThemeResolver } from 'twind';
+import { create, ThemeResolver } from 'twind';
 
 export class DefaultTheme {
   private constructor() {

@@ -1,5 +1,6 @@
 import { Theme } from 'twind';
 import { IThemeConfig } from '../interfaces/theme';
+import { CurrentTheme } from '../theme/current.theme';
 
 export function themeCompose(
   themeArr: IThemeConfig[],
@@ -11,4 +12,8 @@ export function themeCompose(
     (theme, config) => ({ ...theme, ...config[key] }),
     theme
   );
+}
+
+export function themeResolverUtil(key: keyof Theme) {
+  return CurrentTheme.resolver()(key);
 }
