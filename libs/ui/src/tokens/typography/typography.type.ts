@@ -15,7 +15,7 @@ type FontDecoration =
 type FontTransform = 'capitalize' | 'uppercase' | 'lowercase' | 'normal-case';
 export interface FontStyleTokenConfig {
   weight?: string;
-  italics?: boolean;
+  italics?: 'italic' | 'not-italic';
   decoration?: FontDecoration;
   transform?: FontTransform;
 }

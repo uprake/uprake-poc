@@ -1,7 +1,7 @@
 import { decorateToken, tokenGen } from '../../utils/token.utils';
 import {
-  defaultFontTokenConfig as fontTokenConfig,
   defaultFontSpacingTokenConfig as fontSpacingConfig,
+  defaultFontTokenConfig as fontTokenConfig,
 } from './config/default.config';
 import {
   FontSpacingTokenConfig,
@@ -29,7 +29,7 @@ export function fontStyleToken(
     tokenGen('fontWeight', 'font', config.weight, fontTokenConfig.weight),
     config.decoration ?? '',
     config.transform ?? '',
-    config.italics ? 'italic' : 'not-italic',
+    config.italics ?? '',
   ];
 
   return decorateToken(tokens, decorator);
