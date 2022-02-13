@@ -9,6 +9,7 @@ TS_VERSION=$(node -e "console.log(require('./package.json').devDependencies['typ
 NX_BASE=$(node -e "console.log(require('./nx.json').affected['defaultBase'])")
 
 echo "VERCEL_GIT_COMMIT_REF: $VERCEL_GIT_COMMIT_REF"
+echo "NX_BASE: $NX_BASE"
 
 # Install @nrwl/workspace in order to run the affected command
 yarn add -D typescript@$TS_VERSION --cached
