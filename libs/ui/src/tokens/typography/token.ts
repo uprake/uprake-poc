@@ -45,7 +45,8 @@ export function fontSpacingToken(
         'letterSpacing',
         'tracking',
         config.letterSpacing,
-        fontSpacingConfig.letterSpacing
+        fontSpacingConfig.letterSpacing,
+        true
       ),
       tokenGen(
         'lineHeight',

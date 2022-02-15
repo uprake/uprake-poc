@@ -13,9 +13,22 @@ export function tokenGen(
   token: keyof Theme,
   prefix: string,
   value?: string | number,
-  fallback?: string | number
+  fallback?: string | number,
+  negativeAllowed: boolean = false
 ) {
   const tokenConfig = themeResolverUtil(token);
+
+  // handling negativeAllowed case
+  if (negativeAllowed) {
+    if (typeof value == 'string' && value.charAt(0) == '-') {
+      prefix = '-' + prefix;
+      value = value.slice(1);
+    } else if (typeof value == 'number' && value < 0) {
+      prefix = '-' + prefix;
+      value = value * -1;
+    }
+  }
+
   if (value) {
     const isDefined = tokenConfig.hasOwnProperty(value);
     if (isDefined) {

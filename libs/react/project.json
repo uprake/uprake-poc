@@ -52,7 +52,13 @@
         "ci": {
           "quiet": true
         }
-      }
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "dependencies"
+        }
+      ]
     },
     "build-storybook": {
       "executor": "@nrwl/storybook:build",
