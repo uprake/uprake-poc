@@ -1,4 +1,4 @@
-import { fontStyleToken, fontToken } from '@zoratrox/ui';
+import { colorToken, fontStyleToken, fontToken } from '@zoratrox/ui';
 import { tw } from 'twind/style';
 import './React.module.css';
 

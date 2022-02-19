@@ -15,7 +15,7 @@ export function tokenGen(
   value?: string | number,
   fallback?: string | number,
   negativeAllowed: boolean = false
-) {
+): string {
   const tokenConfig = themeResolverUtil(token);
 
   // handling negativeAllowed case

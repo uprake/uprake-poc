@@ -1,0 +1,82 @@
+import { decorateToken, tokenGen } from '../../utils/token.utils';
+import { IColorTokenConfig } from './color.type';
+import { defaultColorTokenConfig as defaultConfig } from './config/default.config';
+
+export function colorToken(config: IColorTokenConfig, decorator?: string) {
+  return decorateToken(
+    [
+      tokenGen(
+        'colors',
+        'accent',
+        config.accentColor,
+        defaultConfig.accentColor,
+        true
+      ),
+      tokenGen('colors', 'bg', config.bgColor, defaultConfig.bgColor, true),
+      tokenGen(
+        'colors',
+        'border',
+        config.borderColor,
+        defaultConfig.borderColor,
+        true
+      ),
+      tokenGen(
+        'colors',
+        'shadow',
+        config.boxShadowColor,
+        defaultConfig.boxShadowColor,
+        true
+      ),
+      tokenGen(
+        'colors',
+        'caret',
+        config.caretColor,
+        defaultConfig.caretColor,
+        true
+      ),
+      tokenGen(
+        'colors',
+        'divide',
+        config.divideColor,
+        defaultConfig.divideColor,
+        true
+      ),
+      tokenGen(
+        'colors',
+        'outline',
+        config.outlineColor,
+        defaultConfig.outlineColor,
+        true
+      ),
+      tokenGen(
+        'colors',
+        'ring',
+        config.ringColor,
+        defaultConfig.ringColor,
+        true
+      ),
+      tokenGen(
+        'colors',
+        'ring-offset',
+        config.ringOffsetColor,
+        defaultConfig.ringOffsetColor,
+        true
+      ),
+      tokenGen(
+        'colors',
+        'text',
+        config.textColor,
+        defaultConfig.textColor,
+        true
+      ),
+      tokenGen(
+        'colors',
+        'decoration',
+        config.textDecorationColor,
+        defaultConfig.textDecorationColor,
+        true
+      ),
+    ],
+    decorator
+  );
+}
