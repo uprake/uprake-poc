@@ -17376,6 +17376,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pigment@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "pigment@npm:0.1.0"
+  bin:
+    pigment: bin/pigment.js
+  checksum: f082849c4f8772b52cb609c9a24c75c5bc394e168553a3e321589d25d3f5d68cafad8d5b76a5edf1944a869d6a25707723f9e1b53aacb7f40c46974a96fc9c77
+  languageName: node
+  linkType: hard
+
 "pirates@npm:^4.0.1, pirates@npm:^4.0.4, pirates@npm:^4.0.5":
   version: 4.0.5
   resolution: "pirates@npm:4.0.5"
@@ -23047,6 +23056,7 @@ __metadata:
     husky: 4
     jest: 27.2.3
     lodash: ^4.17.21
+    pigment: ^0.1.0
     prettier: ^2.5.1
     react: 17.0.2
     react-dom: 17.0.2

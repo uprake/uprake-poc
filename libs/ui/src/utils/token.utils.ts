@@ -33,7 +33,7 @@ export function tokenGen(
     const isDefined = tokenConfig.hasOwnProperty(value);
     if (isDefined) {
       return `${prefix}-${value}`;
-    } else {
+    } else if (fallback) {
       /**
        * How do we handle the other case.
        * Do we allow them to use custom values
@@ -45,6 +45,8 @@ export function tokenGen(
 
       // Use Fallback
       return `${prefix}-${fallback}`;
+    } else {
+      return '';
     }
   }
   return '';

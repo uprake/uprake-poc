@@ -1,6 +1,7 @@
 import { decorateToken, tokenGen } from '../../utils/token.utils';
 import {
   defaultFontSpacingTokenConfig as fontSpacingConfig,
+  defaultFontStyleTokenConfig as fontStyleConfig,
   defaultFontTokenConfig as fontTokenConfig,
 } from './config/default.config';
 import {
@@ -13,9 +14,7 @@ export function fontToken(config: FontTokenConfig, decorator?: string) {
   let tokens = [
     tokenGen('fontFamily', 'font', config.family, fontTokenConfig.family),
     tokenGen('fontSize', 'text', config.size, fontTokenConfig.size),
-    tokenGen('fontWeight', 'font', config.weight, fontTokenConfig.weight),
     config.antialiased ? 'antialiased' : 'subpixel-antialiased',
-    config.italics ? 'italic' : 'not-italic',
   ];
 
   return decorateToken(tokens, decorator);
@@ -26,7 +25,7 @@ export function fontStyleToken(
   decorator?: string
 ) {
   let tokens = [
-    tokenGen('fontWeight', 'font', config.weight, fontTokenConfig.weight),
+    tokenGen('fontWeight', 'font', config.weight, fontStyleConfig.weight),
     config.decoration ?? '',
     config.transform ?? '',
     config.italics ?? '',
