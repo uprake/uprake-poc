@@ -1,6 +1,7 @@
 import { colorPalleteRange } from '@zoratrox/ui';
 import React, { useEffect, useState } from 'react';
 import { tw } from 'twind';
+import CopySnippet from '../../components/CopySnippet';
 import ColorPallete from './ColorPallete';
 
 interface Props {
@@ -10,6 +11,11 @@ interface Props {
 function ColorRange({ colors }: Props) {
   const shades = colorPalleteRange(colors);
 
+  let snippet: Record<string, string> = {};
+  for (let i = 0; i < shades.length; i++) {
+    snippet[(i + 1) * 100] = shades[i];
+  }
+
   return (
     <div>
       <h3>Color Shades Generators using extremas</h3>
@@ -18,6 +24,7 @@ function ColorRange({ colors }: Props) {
           <ColorPallete code={(index + 1) * 100} shade={shade} />
         ))}
       </div>
+      <CopySnippet snippet={JSON.stringify(snippet)} />
     </div>
   );
 }
