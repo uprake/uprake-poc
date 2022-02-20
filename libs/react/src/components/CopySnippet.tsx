@@ -21,7 +21,7 @@ function CopySnippet({ snippet, ...props }: Props) {
   return (
     <>
       <button
-        className={tw`px-2.5 py-1 bg-indigo-500 text-white hover:bg-indigo-400 rounded`}
+        className={tw`px-2.5 py-1 bg-indigo-600 text-white hover:bg-indigo-700 rounded`}
         onClick={handleClick}
       >
         {btnText}
