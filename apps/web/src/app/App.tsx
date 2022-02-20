@@ -3,13 +3,16 @@ import styles from './App.module.css';
 import NxWelcome from './nx-welcome';
 
 import { Route, Link } from 'react-router-dom';
+import ColorGenerator from '../components/ColorGenerator';
+import ColorRange from '../components/ColorRange';
 
 export function App() {
   return (
     <>
-      <NxWelcome title="web" />
+      {/* <NxWelcome title="web" /> */}
+      <ColorGenerator />
+      <ColorRange />
       <div />
-
       {/* START: routes */}
       {/* These routes and navigation have been generated for you */}
       {/* Feel free to move and update them to fit your needs */}
@@ -43,7 +46,7 @@ export function App() {
           </div>
         }
       />
-      {/* END: routes */}
+      END: routes
     </>
   );
 }

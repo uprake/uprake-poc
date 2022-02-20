@@ -5135,6 +5135,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/chroma-js@npm:^2.1.3":
+  version: 2.1.3
+  resolution: "@types/chroma-js@npm:2.1.3"
+  checksum: 8c94c421b9613c534471b18912b11cdbb267ab8da380ce6d484115f48fb08583e7ab1f7e26fa0e7811a0d42ac531fe9a9b8475afe7b7b91d86cd08b758ca3add
+  languageName: node
+  linkType: hard
+
 "@types/color-convert@npm:^2.0.0":
   version: 2.0.0
   resolution: "@types/color-convert@npm:2.0.0"
@@ -8168,6 +8175,13 @@ __metadata:
   version: 2.0.0
   resolution: "chownr@npm:2.0.0"
   checksum: c57cf9dd0791e2f18a5ee9c1a299ae6e801ff58fee96dc8bfd0dcb4738a6ce58dd252a3605b1c93c6418fe4f9d5093b28ffbf4d66648cb2a9c67eaef9679be2f
+  languageName: node
+  linkType: hard
+
+"chroma-js@npm:^2.4.2":
+  version: 2.4.2
+  resolution: "chroma-js@npm:2.4.2"
+  checksum: cf9884c02d406286e4370599bcd1afbf089384407df46b3a69edfedcba7bb99e8f959a5cfdbfec750b305c441c06ca40cd1f70ba3a6c2ce739ac09a92520ddae
   languageName: node
   linkType: hard
 
@@ -17376,15 +17390,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pigment@npm:^0.1.0":
-  version: 0.1.0
-  resolution: "pigment@npm:0.1.0"
-  bin:
-    pigment: bin/pigment.js
-  checksum: f082849c4f8772b52cb609c9a24c75c5bc394e168553a3e321589d25d3f5d68cafad8d5b76a5edf1944a869d6a25707723f9e1b53aacb7f40c46974a96fc9c77
-  languageName: node
-  linkType: hard
-
 "pirates@npm:^4.0.1, pirates@npm:^4.0.4, pirates@npm:^4.0.5":
   version: 4.0.5
   resolution: "pirates@npm:4.0.5"
@@ -23033,6 +23038,7 @@ __metadata:
     "@testing-library/react": 12.1.2
     "@testing-library/react-hooks": 7.0.2
     "@twind/typescript-plugin": ^0.3.5
+    "@types/chroma-js": ^2.1.3
     "@types/jest": 27.0.2
     "@types/lodash": ^4.14.178
     "@types/node": 16.11.7
@@ -23043,6 +23049,7 @@ __metadata:
     "@typescript-eslint/parser": ~5.10.0
     babel-jest: 27.2.3
     babel-loader: 8.1.0
+    chroma-js: ^2.4.2
     core-js: ^3.6.5
     cypress: ^9.1.0
     cz-conventional-changelog: 3.3.0
@@ -23056,7 +23063,6 @@ __metadata:
     husky: 4
     jest: 27.2.3
     lodash: ^4.17.21
-    pigment: ^0.1.0
     prettier: ^2.5.1
     react: 17.0.2
     react-dom: 17.0.2
