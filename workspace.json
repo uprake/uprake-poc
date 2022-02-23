@@ -1,10 +1,9 @@
 {
   "version": 2,
   "projects": {
+    "landing": "apps/landing",
     "react": "libs/react",
     "react-e2e": "apps/react-e2e",
-    "ui": "libs/ui",
-    "web": "apps/web",
-    "web-e2e": "apps/web-e2e"
+    "ui": "libs/ui"
   }
 }
