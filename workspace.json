@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
+    "api": "apps/api",
     "react": "libs/react",
     "react-e2e": "apps/react-e2e",
     "ui": "libs/ui",
