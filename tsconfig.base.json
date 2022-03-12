@@ -17,7 +17,7 @@
     "paths": {
       "@zoratrox/react": ["libs/react/src/index.ts"],
       "@zoratrox/ui": ["libs/ui/src/index.ts"]
-    },
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
