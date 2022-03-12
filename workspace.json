@@ -3,6 +3,7 @@
   "projects": {
     "react": "libs/react",
     "ui": "libs/ui",
+    "utils": "libs/utils",
     "web-ext": "apps/web-ext"
   }
 }

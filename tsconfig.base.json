@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@uprake/utils": ["libs/utils/src/index.ts"],
       "@zoratrox/react": ["libs/react/src/index.ts"],
       "@zoratrox/ui": ["libs/ui/src/index.ts"]
     }
