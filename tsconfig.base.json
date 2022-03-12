@@ -18,12 +18,6 @@
       "@zoratrox/react": ["libs/react/src/index.ts"],
       "@zoratrox/ui": ["libs/ui/src/index.ts"]
     },
-    "plugins": [
-      {
-        "name": "@twind/typescript-plugin",
-        "tags": ["tw", "cx"]
-      }
-    ]
   },
   "exclude": ["node_modules", "tmp"]
 }

@@ -2,8 +2,7 @@
   "version": 2,
   "projects": {
     "react": "libs/react",
-    "react-e2e": "apps/react-e2e",
     "ui": "libs/ui",
-    "web": "apps/web"
+    "web-ext": "apps/web-ext"
   }
 }

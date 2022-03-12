@@ -1,0 +1,42 @@
+{
+  "root": "apps/web",
+  "sourceRoot": "apps/web/src",
+  "projectType": "application",
+  "targets": {
+    "clear": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "rimraf extension/dist extension/manifest.json extension.*",
+        "cwd": "apps/web-ext"
+      }
+    },
+    "dev": {
+      "dependsOn": [
+        {
+          "target": "clear",
+          "projects": "self"
+        }
+      ],
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "commands": [
+          "NODE_ENV=development esno scripts/prepare.ts",
+          "NODE_ENV=development vite",
+          "NODE_ENV=development nx run web-ext:build-js -- --mode development"
+        ],
+        "parallel": true,
+        "cwd": "apps/web-ext"
+      }
+    },
+    "build-js": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "vite build --config vite.config.content.ts",
+        "cwd": "apps/web-ext"
+      }
+    }
+  }
+}

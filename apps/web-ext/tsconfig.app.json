@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "jsx": "react-jsx",
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "~/*": ["apps/web-ext/src/*"]
+    },
+  },
+  "exclude": [],
+  "include": ["**/*.ts"]
+}
