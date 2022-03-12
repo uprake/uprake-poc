@@ -16,6 +16,10 @@
         {
           "target": "clear",
           "projects": "self"
+        },
+        {
+          "target": "watch",
+          "projects": "dependencies"
         }
       ],
       "executor": "@nrwl/workspace:run-commands",
