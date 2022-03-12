@@ -37,6 +37,22 @@
         "command": "vite build --config vite.config.content.ts",
         "cwd": "apps/web-ext"
       }
+    },
+    "start:chromium": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "web-ext run --source-dir ./extension --target=chromium",
+        "cwd": "apps/web-ext"
+      }
+    },
+    "start:firefox": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "web-ext run --source-dir ./extension --target=firefox-desktop",
+        "cwd": "apps/web-ext"
+      }
     }
   }
 }
