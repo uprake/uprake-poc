@@ -1,9 +1,10 @@
 /* eslint-disable no-console */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { tw } from 'twind';
 import { onMessage } from 'webext-bridge';
 import browser from 'webextension-polyfill';
-import { ContentApp } from './views/ContentApp';
+import ContentApp from './views/ContentApp';
 
 // Firefox `browser.tabs.executeScript()` requires scripts return a primitive value
 (() => {
@@ -16,6 +17,7 @@ import { ContentApp } from './views/ContentApp';
 
   // mount component to context window
   const container = document.createElement('div');
+  container.setAttribute('class', tw`top-0 right-0 left-0 fixed z-[100000]`);
   const root = document.createElement('div');
   const styleEl = document.createElement('link');
   const shadowDOM =
