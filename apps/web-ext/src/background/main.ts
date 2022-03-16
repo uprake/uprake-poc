@@ -1,6 +1,9 @@
 import { onMessage, sendMessage } from 'webext-bridge';
 import { Tabs } from 'webextension-polyfill';
 import browser from 'webextension-polyfill';
+import { resolve } from 'path';
+
+console.log('background');
 
 // only on dev mode
 if (import.meta.hot) {
@@ -20,6 +23,7 @@ let previousTabId = 0;
 // communication example: send previous tab title from background page
 // see shim.d.ts for type declaration
 browser.tabs.onActivated.addListener(async ({ tabId }) => {
+  // console.log('tabbed');
   if (!previousTabId) {
     previousTabId = tabId;
     return;
@@ -55,3 +59,10 @@ browser.tabs.onActivated.addListener(async ({ tabId }) => {
 //     };
 //   }
 // });
+
+browser.runtime.onMessage.addListener((data: any) => {
+  if (data.type === 'content-script') {
+    return Promise.resolve(data.msg + 'received thru background');
+  }
+  return;
+});

@@ -34,6 +34,26 @@
         "cwd": "apps/web-ext"
       }
     },
+
+    "build": {
+      "dependsOn": [
+        {
+          "target": "clear",
+          "projects": "self"
+        }
+      ],
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "commands": [
+          "cross-env NODE_ENV=production vite build",
+          "cross-env NODE_ENV=production esno scripts/prepare.ts",
+          "cross-env NODE_ENV=production vite build --config vite.config.content.ts"
+        ],
+        "cwd": "apps/web-ext"
+      }
+    },
+
     "build-js": {
       "executor": "@nrwl/workspace:run-commands",
       "outputs": [],
