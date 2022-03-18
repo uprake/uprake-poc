@@ -1,4 +1,4 @@
-import { colorPalleteRange } from '@zoratrox/ui';
+import { colorPalleteRange } from '@uprake/ui';
 import React, { useEffect, useState } from 'react';
 import { tw } from 'twind';
 import CopySnippet from '../../components/CopySnippet';

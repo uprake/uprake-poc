@@ -1,4 +1,4 @@
-import { colorPallete } from '@zoratrox/ui';
+import { colorPallete } from '@uprake/ui';
 import React from 'react';
 import { tw } from 'twind';
 import CopySnippet from '../../components/CopySnippet';

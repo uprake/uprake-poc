@@ -8,7 +8,7 @@
 //   },
 // };
 
-import { config } from '@zoratrox/ui';
+import { config } from '@uprake/ui';
 import { setup } from 'twind';
 
 // setup(twindConfig);

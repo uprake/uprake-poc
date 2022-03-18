@@ -1,4 +1,4 @@
-// import { twConfigExtend } from "@zoratrox/ui";
+// import { twConfigExtend } from "@uprake/ui";
 
 // export default {
 //   preflight: true, // do not include base style reset (default: use tailwind preflight)

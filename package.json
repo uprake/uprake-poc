@@ -1,5 +1,5 @@
 {
-  "name": "zoratrox",
+  "name": "uprake",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -101,6 +101,7 @@
     "vite-plugin-html": "^3.0.6",
     "vite-plugin-svgr": "^1.0.1",
     "vite-preset-react": "^2.2.0",
+    "vite-tsconfig-paths": "^3.4.1",
     "web-ext": "^6.4.0"
   },
   "packageManager": "yarn@3.1.1",

@@ -9,72 +9,47 @@ export function colorToken(config: IColorTokenConfig, decorator?: string) {
         'colors',
         'accent',
         config.accentColor,
-        defaultConfig.accentColor,
-        true
+        defaultConfig.accentColor
       ),
-      tokenGen('colors', 'bg', config.bgColor, defaultConfig.bgColor, true),
+      tokenGen('colors', 'bg', config.bgColor, defaultConfig.bgColor),
       tokenGen(
         'colors',
         'border',
         config.borderColor,
-        defaultConfig.borderColor,
-        true
+        defaultConfig.borderColor
       ),
       tokenGen(
         'colors',
         'shadow',
         config.boxShadowColor,
-        defaultConfig.boxShadowColor,
-        true
+        defaultConfig.boxShadowColor
       ),
-      tokenGen(
-        'colors',
-        'caret',
-        config.caretColor,
-        defaultConfig.caretColor,
-        true
-      ),
+      tokenGen('colors', 'caret', config.caretColor, defaultConfig.caretColor),
       tokenGen(
         'colors',
         'divide',
         config.divideColor,
-        defaultConfig.divideColor,
-        true
+        defaultConfig.divideColor
       ),
       tokenGen(
         'colors',
         'outline',
         config.outlineColor,
-        defaultConfig.outlineColor,
-        true
+        defaultConfig.outlineColor
       ),
-      tokenGen(
-        'colors',
-        'ring',
-        config.ringColor,
-        defaultConfig.ringColor,
-        true
-      ),
+      tokenGen('colors', 'ring', config.ringColor, defaultConfig.ringColor),
       tokenGen(
         'colors',
         'ring-offset',
         config.ringOffsetColor,
-        defaultConfig.ringOffsetColor,
-        true
+        defaultConfig.ringOffsetColor
       ),
-      tokenGen(
-        'colors',
-        'text',
-        config.textColor,
-        defaultConfig.textColor,
-        true
-      ),
+      tokenGen('colors', 'text', config.textColor, defaultConfig.textColor),
       tokenGen(
         'colors',
         'decoration',
         config.textDecorationColor,
-        defaultConfig.textDecorationColor,
-        true
+        defaultConfig.textDecorationColor
       ),
     ],
     decorator

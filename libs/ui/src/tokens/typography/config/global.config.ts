@@ -1,4 +1,4 @@
-import { DefaultTheme } from 'libs/ui/src/theme/default.theme';
+import { DefaultTheme } from '../../../theme/default.theme';
 import { Theme } from 'twind';
 
 const global: Partial<Theme> = {

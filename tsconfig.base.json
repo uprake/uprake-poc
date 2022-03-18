@@ -1,4 +1,5 @@
 {
+  "extends": "./tsconfig.json",
   "compileOnSave": false,
   "compilerOptions": {
     "rootDir": ".",
@@ -16,8 +17,9 @@
     "baseUrl": ".",
     "paths": {
       "@uprake/utils": ["libs/utils/src/index.ts"],
-      "@zoratrox/react": ["libs/react/src/index.ts"],
-      "@zoratrox/ui": ["libs/ui/src/index.ts"]
+      "@uprake/react": ["libs/react/src/index.ts"],
+      "@uprake/ui": ["libs/ui/src/index.ts"],
+      "~/web-ext/*": ["apps/web-ext/src/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

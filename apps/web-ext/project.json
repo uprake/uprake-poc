@@ -18,7 +18,7 @@
           "projects": "self"
         },
         {
-          "target": "watch",
+          "target": "build",
           "projects": "dependencies"
         }
       ],
@@ -58,5 +58,6 @@
         "cwd": "apps/web-ext"
       }
     }
-  }
+  },
+  "implicitDependencies": []
 }

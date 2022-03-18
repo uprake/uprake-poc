@@ -1,10 +1,24 @@
 import { Theme } from 'twind';
 import { themeResolverUtil } from './theme.utils';
 import { cleanSpace } from './string.utils';
+import { ITokenFallbackStrategyDict } from '../interfaces/tokens.type';
 
-export function tokenClassGen(token: string, value: string | number | Symbol) {
-  if (value) {
-    return `${token}-${value}`;
+const tokenStrategyDict: ITokenFallbackStrategyDict = {
+  default: (prefix, val) => tokenClassGen(prefix, val),
+  custom: (prefix, val) => tokenClassGen(prefix, `[${val}]`, false),
+};
+
+type ITokenStrategy = 'default' | 'custom';
+
+export function tokenClassGen(
+  prefix: string,
+  value: string | number,
+  skipPrefix: boolean = true
+) {
+  if (value && prefix) {
+    return `${prefix}-${value}`;
+  } else if (!prefix && skipPrefix) {
+    return value.toString();
   }
   return '';
 }
@@ -32,7 +46,7 @@ export function tokenGen(
   if (value) {
     const isDefined = tokenConfig.hasOwnProperty(value);
     if (isDefined) {
-      return `${prefix}-${value}`;
+      return tokenClassGen(prefix, value);
     } else if (fallback) {
       /**
        * How do we handle the other case.
@@ -44,7 +58,7 @@ export function tokenGen(
       // return `${prefix}-[${value}]`
 
       // Use Fallback
-      return `${prefix}-${fallback}`;
+      return tokenClassGen(prefix, value);
     } else {
       return '';
     }
