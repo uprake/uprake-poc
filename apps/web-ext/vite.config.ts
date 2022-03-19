@@ -18,7 +18,12 @@ export const sharedConfig: UserConfig = {
   plugins: [
     // React fast refresh doesn't work, cause injecting of preambleCode into index.html
     // TODO: fix it
-    react({ fastRefresh: false }),
+    react({
+      // injectReact: true,
+      // removeDevtoolsInProd: true,
+      // reactPluginOptions: { fastRefresh: false },
+      fastRefresh: false,
+    }),
     tsconfigPaths({ projects: [__dirname + '/tsconfig.app.json'] }),
     AutoImport({
       imports: [
