@@ -5,7 +5,7 @@ import { style } from './style';
 export const ContentApp = () => {
   return (
     <IFrame style={style.trackPad}>
-      <Points />
+      <Points type={'mpr'} />
     </IFrame>
   );
 };

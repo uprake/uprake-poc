@@ -6,7 +6,11 @@ import { style } from './style';
 import { IoWarningOutline } from 'react-icons/io5';
 import InlineMenu from './InlineMenu';
 
-function Points() {
+interface PointsProp {
+  type: 'tbr' | 'mpr' | 'point';
+}
+
+function Points({ type }: PointsProp) {
   const editor = useEditor({
     extensions: [StarterKit],
     injectCSS: false,
@@ -19,7 +23,7 @@ function Points() {
   });
 
   return (
-    <div style={style.mpr}>
+    <div style={style[type]}>
       <div style={style.pointIcon}>
         <IoWarningOutline />
       </div>
