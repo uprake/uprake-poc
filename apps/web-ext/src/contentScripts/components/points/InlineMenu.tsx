@@ -26,6 +26,12 @@ function InlineMenu({ editor }: any) {
             <RiItalic />
           </button>
           <button
+            onClick={() => editor.chain().focus().toggleItalic().run()}
+            className={editor.isActive('italic') ? 'is-active' : ''}
+          >
+            <RiItalic />
+          </button>
+          <button
             onClick={() => editor.chain().focus().toggleStrike().run()}
             className={editor.isActive('strike') ? 'is-active' : ''}
           >

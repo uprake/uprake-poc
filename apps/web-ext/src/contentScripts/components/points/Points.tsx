@@ -19,7 +19,7 @@ function Points() {
   });
 
   return (
-    <div style={style.point}>
+    <div style={style.mpr}>
       <div style={style.pointIcon}>
         <IoWarningOutline />
       </div>

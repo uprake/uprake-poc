@@ -1,11 +1,33 @@
 import { CSSProperties } from 'react';
 
-export const style: Record<string, CSSProperties> = {
-  point: {
+const pointVariantConfig = {
+  mpr: {
+    bg: 'rgba(244, 63, 94, 1)',
+    border: '#e11d48',
+  },
+};
+
+function pointGen({
+  variant,
+}: {
+  variant: keyof typeof pointVariantConfig;
+}): CSSProperties {
+  const styles: CSSProperties = {
     padding: 0,
     display: 'flex',
-    background: 'rgba(255, 0, 0, 0.75)',
-  },
+    border: '1.5px solid #e11d48',
+    color: 'white',
+    borderRadius: '5px',
+  };
+
+  styles.backgroundColor = pointVariantConfig[variant].bg;
+  styles.borderColor = pointVariantConfig[variant].border;
+
+  return styles;
+}
+
+export const style: Record<string, CSSProperties> = {
+  mpr: pointGen({ variant: 'mpr' }),
   pointIcon: {
     width: '25px',
     padding: '15px 0px',

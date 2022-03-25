@@ -1,10 +1,11 @@
+import { IFrame } from '../components/points/IFrame';
 import Points from '../components/points/Points';
 import { style } from './style';
 
 export const ContentApp = () => {
   return (
-    <div style={style.trackPad}>
+    <IFrame style={style.trackPad}>
       <Points />
-    </div>
+    </IFrame>
   );
 };

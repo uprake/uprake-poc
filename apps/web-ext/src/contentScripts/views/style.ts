@@ -5,5 +5,6 @@ export const style: Record<string, CSSProperties> = {
     background: 'white',
     fontSize: '16px',
     height: '300px',
+    width: '100%',
   },
 };
