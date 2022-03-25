@@ -13,6 +13,8 @@ function Menu({ isEditable }: any) {
   const [x, setX] = useState<any>(0);
   const [y, setY] = useState<any>(0);
 
+  const [editorType, setEditorType] = useState<any>('tbr');
+
   useEffect(() => {
     document.onmousemove = (e) => {
       setX(e.clientX);
@@ -42,7 +44,7 @@ function Menu({ isEditable }: any) {
             </div>
             <div>
               <IFrame style={style.trackPad}>
-                <Points />
+                <Points type={editorType} />
               </IFrame>
               <input type="text" placeholder="type here ...." />
             </div>

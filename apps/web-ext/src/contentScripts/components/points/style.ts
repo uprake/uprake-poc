@@ -5,6 +5,14 @@ const pointVariantConfig = {
     bg: 'rgba(244, 63, 94, 1)',
     border: '#e11d48',
   },
+  tbr: {
+    bg: '#BA77F9',
+    border: '#A855F7',
+  },
+  point: {
+    bg: '#A855F7',
+    border: '#8815F4',
+  },
 };
 
 function pointGen({
@@ -28,6 +36,8 @@ function pointGen({
 
 export const style: Record<string, CSSProperties> = {
   mpr: pointGen({ variant: 'mpr' }),
+  tbr: pointGen({ variant: 'tbr' }),
+  point: pointGen({ variant: 'point' }),
   pointIcon: {
     width: '25px',
     padding: '15px 0px',
