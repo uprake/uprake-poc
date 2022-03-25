@@ -1,19 +1,22 @@
 import { style } from './style';
 
-import Menu from './menu/Menu';
-import VerticalMenu from './menu/VerticalMenu';
-import { IFrame } from '../components/points/IFrame';
-import Points from '../components/points/Points';
+import Menu from '../components/menu/Menu';
+import { useEffect, useState } from 'react';
+import Browser from 'webextension-polyfill';
 
 export const ContentApp = () => {
+  const [isEditable, setIsEditable] = useState(false);
+
+  const toggleEditor = (obj: any) => {
+    setIsEditable((a) => !a);
+  };
+  useEffect(() => {
+    Browser.runtime.onMessage.addListener(toggleEditor);
+  }, []);
   return (
     <>
-      <div></div>
-      <Menu />
-      <IFrame style={style.trackPad}>
-        <Points />
-      </IFrame>
-      {/* <VerticalMenu></VerticalMenu> */}
+      <div>Menu</div>
+      <Menu isEditable={isEditable} />
     </>
   );
 };

@@ -1,18 +1,19 @@
-import { sendMessage } from "webext-bridge";
-import { Tabs } from "webextension-polyfill";
-import browser from "webextension-polyfill";
+import { sendMessage } from 'webext-bridge';
+import { Tabs } from 'webextension-polyfill';
+import browser from 'webextension-polyfill';
+import { commandListener } from './commandListener';
 
 // only on dev mode
 if (import.meta.hot) {
   // @ts-expect-error for background HMR
-  import("/@vite/client");
+  import('/@vite/client');
   // load latest content script
-  import("./contentScriptHMR");
+  import('./contentScriptHMR');
 }
 
 browser.runtime.onInstalled.addListener((): void => {
   // eslint-disable-next-line no-console
-  console.log("Extension installed");
+  console.log('Extension installed');
 });
 
 let previousTabId = 0;
@@ -35,11 +36,11 @@ browser.tabs.onActivated.addListener(async ({ tabId }) => {
   }
 
   // eslint-disable-next-line no-console
-  console.log("previous tab", tab);
+  console.log('previous tab', tab);
   sendMessage(
-    "tab-prev",
+    'tab-prev',
     { title: tab.title },
-    { context: "content-script", tabId }
+    { context: 'content-script', tabId }
   );
 });
 
@@ -55,3 +56,5 @@ browser.tabs.onActivated.addListener(async ({ tabId }) => {
 //     };
 //   }
 // });
+
+commandListener();
