@@ -1,58 +1,60 @@
-import React, { useEffect, useState } from 'react';
+import { isDate } from 'lodash';
+import React, { useEffect, useRef, useState } from 'react';
 import { Rnd } from 'react-rnd';
-import { tw } from 'twind';
 import { IFrame } from '~/contentScripts/components/points/IFrame';
 import Points from '~/contentScripts/components/points/Points';
-import { style } from '../../views/style';
 import Button from '../buttons/Button';
 import { menuStyle } from './menu.style';
 
-function Menu({ isEditable }: any) {
+declare global {
+  interface Window {
+    mouseX: number;
+    mouseY: number;
+  }
+}
+
+function Menu({ isEditable, x, y }: any) {
   const [videoEl, setVideoEl] = useState<HTMLElement>();
 
-  const [x, setX] = useState<any>(0);
-  const [y, setY] = useState<any>(0);
-
   const [editorType, setEditorType] = useState<any>('tbr');
+  console.log(x, y);
+
+  const editorRef = useRef<any>();
 
   useEffect(() => {
-    document.onmousemove = (e) => {
-      setX(e.clientX);
-      setY(e.clientY);
-    };
-  }, []);
-
-  // useEffect(() => {
+    editorRef.current.updatePosition({ x: x, y: y });
+  }, [x, y]);
+  console.log(editorRef.current);
 
   return (
     <div>
-      {isEditable ? (
-        <Rnd
-          style={menuStyle.root}
-          default={{
-            x: x,
-            y: y,
-            width: 300,
-            height: 300,
-          }}
-        >
-          <div>
-            <div className={tw`bg-blue-400`}>
-              <Button title="TBR"></Button>
-              <Button title="MPR"></Button>
-              <Button title="SS"></Button>
-            </div>
-            <div>
-              <IFrame style={style.trackPad}>
-                <Points type={editorType} />
-              </IFrame>
-              <input type="text" placeholder="type here ...." />
-            </div>
+      <Rnd
+        // ref={c => { editorRef = c }}
+        ref={editorRef}
+        style={{ ...menuStyle.rnd, display: isEditable ? 'block' : 'none' }}
+        default={{
+          x: x,
+          y: y,
+          width: '320',
+          height: '320',
+        }}
+        minHeight="320"
+        minWidth={320}
+        bounds="window"
+      >
+        <div>
+          <div style={menuStyle.header}>
+            <Button title="TBR"></Button>
+            <Button title="MPR"></Button>
+            <Button title="SS"></Button>
           </div>
-        </Rnd>
-      ) : (
-        ''
-      )}
+          <div>
+            <IFrame style={menuStyle.trackPad}>
+              <Points type={editorType} />
+            </IFrame>
+          </div>
+        </div>
+      </Rnd>
     </div>
   );
 }
