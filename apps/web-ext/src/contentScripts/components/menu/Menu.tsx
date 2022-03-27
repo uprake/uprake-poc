@@ -1,8 +1,8 @@
-import { isDate } from 'lodash';
 import React, { useEffect, useRef, useState } from 'react';
 import { Rnd } from 'react-rnd';
 import { IFrame } from '~/contentScripts/components/points/IFrame';
 import Points from '~/contentScripts/components/points/Points';
+import { ScreenShot } from '~/contentScripts/youtube-ss/ScreenShot';
 import Button from '../buttons/Button';
 import { menuStyle } from './menu.style';
 
@@ -13,19 +13,36 @@ declare global {
   }
 }
 
-function Menu({ isEditable, x, y }: any) {
-  const [videoEl, setVideoEl] = useState<HTMLElement>();
+const typeOptions = {
+  tbr: 'TBR',
+  mpr: 'MPR',
+  point: 'POINT',
+};
 
-  const [editorType, setEditorType] = useState<any>('tbr');
-  console.log(x, y);
+function Menu({ isEditable, x = 0, y = 0 }: any) {
+  const [videoEl, setVideoEl] = useState<HTMLElement>();
+  const [editorType, setEditorType] = useState<keyof typeof typeOptions>('tbr');
+
+  const [content, setContent] = useState(typeOptions);
+  // content['tbr']
+
+  // const [currentEditor , setCurrentEditor ] = useState('')
 
   const editorRef = useRef<any>();
 
   useEffect(() => {
     editorRef.current.updatePosition({ x: x, y: y });
   }, [x, y]);
-  console.log(editorRef.current);
 
+  const toggleButton = (e: any) => {
+    if (e.target.id != 'ss') {
+      setEditorType(e.target.id);
+    }
+  };
+
+  useEffect(() => {
+    console.log(content[editorType]);
+  }, [editorType]);
   return (
     <div>
       <Rnd
@@ -44,9 +61,11 @@ function Menu({ isEditable, x, y }: any) {
       >
         <div>
           <div style={menuStyle.header}>
-            <Button title="TBR"></Button>
-            <Button title="MPR"></Button>
-            <Button title="SS"></Button>
+            <Button id="tbr" onClick={toggleButton} title="TBR"></Button>
+            <Button id="mpr" onClick={toggleButton} title="MPR"></Button>
+            <Button id="point" onClick={toggleButton} title="Point"></Button>
+            {/* <Button id="ss" onClick={toggleButton} title="ss"></Button> */}
+            <ScreenShot />
           </div>
           <div>
             <IFrame style={menuStyle.trackPad}>

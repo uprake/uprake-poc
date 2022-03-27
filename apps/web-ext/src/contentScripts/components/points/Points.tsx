@@ -5,12 +5,14 @@ import StarterKit from '@tiptap/starter-kit';
 import { style } from './style';
 import { IoWarningOutline } from 'react-icons/io5';
 import InlineMenu from './InlineMenu';
+import { useEffect, useState } from 'react';
 
 interface PointsProp {
   type: 'tbr' | 'mpr' | 'point';
 }
 
 function Points({ type }: PointsProp) {
+  const [content, setContent] = useState('');
   const editor = useEditor({
     extensions: [StarterKit],
     injectCSS: false,
@@ -19,7 +21,12 @@ function Points({ type }: PointsProp) {
         style: 'outline: none',
       },
     },
-    content: '<p>Hello World!</p>',
+    content: 'Hi there ',
+    onUpdate({ editor }: any) {
+      //
+      setContent(editor.getHTML());
+      // console.log(editor.getHTML());
+    },
   });
 
   return (
