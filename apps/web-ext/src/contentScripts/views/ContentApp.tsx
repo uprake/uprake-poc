@@ -1,8 +1,6 @@
-import { style } from './style';
-
-import Menu from '../components/menu/Menu';
 import { useEffect, useState } from 'react';
-import Browser from 'webextension-polyfill';
+import browser from 'webextension-polyfill';
+import Menu from '../components/menu/Menu';
 
 export const ContentApp = () => {
   const [isEditable, setIsEditable] = useState(false);
@@ -11,7 +9,7 @@ export const ContentApp = () => {
     setIsEditable((a) => !a);
   };
   useEffect(() => {
-    Browser.runtime.onMessage.addListener(toggleEditor);
+    browser.runtime.onMessage.addListener(toggleEditor);
   }, []);
   return (
     <>

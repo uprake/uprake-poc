@@ -15,11 +15,25 @@ const pointVariantConfig = {
   },
 };
 
-function pointGen({
-  variant,
-}: {
+export const style: Record<string, CSSProperties> = {
+  // mpr: pointGen({ variant: 'mpr' }),
+  // tbr: pointGen({ variant: 'tbr' }),
+  // point: pointGen({ variant: 'point' }),
+  pointIcon: {
+    width: '25px',
+    padding: '15px 0px',
+    paddingLeft: '10px',
+  },
+  pointEditor: {
+    flexGrow: 1,
+  },
+};
+
+interface IPointGenArgs {
   variant: keyof typeof pointVariantConfig;
-}): CSSProperties {
+}
+
+function pointGen({ variant }: IPointGenArgs): CSSProperties {
   const styles: CSSProperties = {
     padding: 0,
     display: 'flex',
@@ -34,16 +48,18 @@ function pointGen({
   return styles;
 }
 
-export const style: Record<string, CSSProperties> = {
-  mpr: pointGen({ variant: 'mpr' }),
-  tbr: pointGen({ variant: 'tbr' }),
-  point: pointGen({ variant: 'point' }),
-  pointIcon: {
-    width: '25px',
-    padding: '15px 0px',
-    paddingLeft: '10px',
-  },
-  pointEditor: {
-    flexGrow: 1,
-  },
+interface IFrameGenArgs {}
+
+function frameGen({}: IFrameGenArgs): CSSProperties {
+  const styles: CSSProperties = {
+    width: '100%',
+    boxSizing: 'content-box',
+  };
+
+  return styles;
+}
+
+export const styleGen = {
+  point: pointGen,
+  frame: frameGen,
 };

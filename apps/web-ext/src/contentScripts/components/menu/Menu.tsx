@@ -26,9 +26,9 @@ function Menu({ isEditable }: any) {
 
   return (
     <div>
-      {isEditable ? (
+      {
         <Rnd
-          style={menuStyle.root}
+          style={{ ...menuStyle.root, display: isEditable ? 'block' : 'none' }}
           default={{
             x: x,
             y: y,
@@ -36,23 +36,21 @@ function Menu({ isEditable }: any) {
             height: 300,
           }}
         >
-          <div>
+          <IFrame>
             <div className={tw`bg-blue-400`}>
               <Button title="TBR"></Button>
               <Button title="MPR"></Button>
               <Button title="SS"></Button>
             </div>
             <div>
-              <IFrame style={style.trackPad}>
+              <div style={style.trackPad}>
                 <Points type={editorType} />
-              </IFrame>
+              </div>
               <input type="text" placeholder="type here ...." />
             </div>
-          </div>
+          </IFrame>
         </Rnd>
-      ) : (
-        ''
-      )}
+      }
     </div>
   );
 }
