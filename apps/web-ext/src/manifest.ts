@@ -42,8 +42,8 @@ export async function getManifest() {
     commands: {
       'open-editor': {
         suggested_key: {
-          default: 'Ctrl+Shift+M',
-          mac: 'Command+Shift+M',
+          default: 'Ctrl+Shift+1',
+          mac: 'Command+Shift+1',
         },
         description: 'Open Editor',
       },
