@@ -41,18 +41,18 @@ function Menu({ isEditable, x, y }: any) {
         minWidth={320}
         bounds="window"
       >
-        <div>
+        <IFrame>
           <div style={menuStyle.header}>
-            <Button title="TBR"></Button>
+            <Button className="bg-blue-500" title="TBR"></Button>
             <Button title="MPR"></Button>
             <Button title="SS"></Button>
           </div>
           <div>
-            <IFrame style={menuStyle.trackPad}>
+            <div style={menuStyle.trackPad}>
               <Points type={editorType} />
-            </IFrame>
+            </div>
           </div>
-        </div>
+        </IFrame>
       </Rnd>
     </div>
   );

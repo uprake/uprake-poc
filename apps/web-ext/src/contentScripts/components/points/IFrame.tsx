@@ -16,8 +16,15 @@ export const IFrame = ({ children, style, ...props }: any) => {
         background: 'transparent',
         ...style,
       }}
+      className={'p-0'}
       ref={setContentRef}
     >
+      <style>
+        {`body, html {
+          padding: 0!important;
+          margin: 0!important;
+        }`}
+      </style>
       {mountNode && createPortal(children, mountNode)}
     </iframe>
   );

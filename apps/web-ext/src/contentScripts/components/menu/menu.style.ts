@@ -18,7 +18,7 @@ export const menuStyle: Record<string, CSSProperties> = {
     justifyContent: 'space-between',
   },
   trackPad: {
-    background: 'white',
+    // background: 'white',
     fontSize: '16px',
     // minHeight: '300px',
     // minWidth: '300px',

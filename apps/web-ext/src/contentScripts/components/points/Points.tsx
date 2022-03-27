@@ -24,7 +24,7 @@ function Points({ type }: PointsProp) {
   });
 
   return (
-    <IFrame style={styleGen.frame({})}>
+    <div style={styleGen.frame({})}>
       <div style={styleGen.point({ variant: type })}>
         <div style={style.pointIcon}>
           <IoWarningOutline />
@@ -34,7 +34,7 @@ function Points({ type }: PointsProp) {
           <EditorContent editor={editor} />
         </div>
       </div>
-    </IFrame>
+    </div>
   );
 }
 

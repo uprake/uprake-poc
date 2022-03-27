@@ -5,6 +5,7 @@ import { setup, tw } from 'twind';
 import { onMessage } from 'webext-bridge';
 import browser from 'webextension-polyfill';
 import { ContentApp } from './views/ContentApp';
+import './style.css';
 
 // setup({
 //   preflight: false,
