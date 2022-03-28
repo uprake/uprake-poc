@@ -4,6 +4,7 @@ import { EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { useState } from 'react';
 import { IoWarningOutline } from 'react-icons/io5';
+import { IFrame } from './IFrame';
 import InlineMenu from './InlineMenu';
 import { style, styleGen } from './style';
 
@@ -30,7 +31,7 @@ function Points({ type }: PointsProp) {
   });
 
   return (
-    <div style={styleGen.frame({})}>
+    <IFrame style={styleGen.frame({})}>
       <div style={styleGen.point({ variant: type })}>
         <div style={style.pointIcon}>
           <IoWarningOutline />
@@ -40,7 +41,7 @@ function Points({ type }: PointsProp) {
           <EditorContent editor={editor} />
         </div>
       </div>
-    </div>
+    </IFrame>
   );
 }
 

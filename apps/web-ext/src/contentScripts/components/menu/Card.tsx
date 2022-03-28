@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Rnd } from 'react-rnd';
+import { tw } from 'twind';
 import { IFrame } from '~/contentScripts/components/points/IFrame';
 import Points from '~/contentScripts/components/points/Points';
 import { ScreenShot } from '~/contentScripts/youtube-ss/ScreenShot';
@@ -59,9 +60,14 @@ function Card({ isEditable, x = 0, y = 0 }: any) {
         minWidth={320}
         bounds="window"
       >
-        <IFrame>
+        <div>
           <div style={cardStyle.header}>
-            <Button id="tbr" onClick={toggleButton} title="TBR"></Button>
+            <Button
+              id="tbr"
+              className={tw`bg-green-500`}
+              onClick={toggleButton}
+              title="TBR"
+            ></Button>
             <Button id="mpr" onClick={toggleButton} title="MPR"></Button>
             <Button id="point" onClick={toggleButton} title="Point"></Button>
             {/* <Button id="ss" onClick={toggleButton} title="ss"></Button> */}
@@ -72,7 +78,7 @@ function Card({ isEditable, x = 0, y = 0 }: any) {
               <Points type={editorType} />
             </div>
           </div>
-        </IFrame>
+        </div>
       </Rnd>
     </div>
   );
