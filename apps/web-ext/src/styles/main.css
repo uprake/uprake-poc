@@ -11,7 +11,3 @@ body,
 .icon-btn {
   font-size: 0.9em;
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
