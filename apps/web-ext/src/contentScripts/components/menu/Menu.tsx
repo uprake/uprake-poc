@@ -59,7 +59,7 @@ function Menu({ isEditable, x = 0, y = 0 }: any) {
         minWidth={320}
         bounds="window"
       >
-        <div>
+        <IFrame>
           <div style={menuStyle.header}>
             <Button id="tbr" onClick={toggleButton} title="TBR"></Button>
             <Button id="mpr" onClick={toggleButton} title="MPR"></Button>
@@ -68,11 +68,11 @@ function Menu({ isEditable, x = 0, y = 0 }: any) {
             <ScreenShot />
           </div>
           <div>
-            <IFrame style={menuStyle.trackPad}>
+            <div style={menuStyle.trackPad}>
               <Points type={editorType} />
-            </IFrame>
+            </div>
           </div>
-        </div>
+        </IFrame>
       </Rnd>
     </div>
   );

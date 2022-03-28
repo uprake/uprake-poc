@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Browser from 'webextension-polyfill';
+import browser from 'webextension-polyfill';
 import Menu from '../components/menu/Menu';
 
 export const ContentApp = () => {
@@ -19,7 +19,7 @@ export const ContentApp = () => {
   }, []);
 
   useEffect(() => {
-    Browser.runtime.onMessage.addListener(toggleEditor);
+    browser.runtime.onMessage.addListener(toggleEditor);
   }, []);
   return (
     <>
