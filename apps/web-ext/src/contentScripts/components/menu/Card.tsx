@@ -4,7 +4,7 @@ import { IFrame } from '~/contentScripts/components/points/IFrame';
 import Points from '~/contentScripts/components/points/Points';
 import { ScreenShot } from '~/contentScripts/youtube-ss/ScreenShot';
 import Button from '../buttons/Button';
-import { menuStyle } from './menu.style';
+import { cardStyle } from './card.style';
 
 declare global {
   interface Window {
@@ -19,7 +19,7 @@ const typeOptions = {
   point: 'POINT',
 };
 
-function Menu({ isEditable, x = 0, y = 0 }: any) {
+function Card({ isEditable, x = 0, y = 0 }: any) {
   const [videoEl, setVideoEl] = useState<HTMLElement>();
   const [editorType, setEditorType] = useState<keyof typeof typeOptions>('tbr');
 
@@ -48,7 +48,7 @@ function Menu({ isEditable, x = 0, y = 0 }: any) {
       <Rnd
         // ref={c => { editorRef = c }}
         ref={editorRef}
-        style={{ ...menuStyle.rnd, display: isEditable ? 'block' : 'none' }}
+        style={{ ...cardStyle.rnd, display: isEditable ? 'block' : 'none' }}
         default={{
           x: x,
           y: y,
@@ -60,7 +60,7 @@ function Menu({ isEditable, x = 0, y = 0 }: any) {
         bounds="window"
       >
         <IFrame>
-          <div style={menuStyle.header}>
+          <div style={cardStyle.header}>
             <Button id="tbr" onClick={toggleButton} title="TBR"></Button>
             <Button id="mpr" onClick={toggleButton} title="MPR"></Button>
             <Button id="point" onClick={toggleButton} title="Point"></Button>
@@ -68,7 +68,7 @@ function Menu({ isEditable, x = 0, y = 0 }: any) {
             <ScreenShot />
           </div>
           <div>
-            <div style={menuStyle.trackPad}>
+            <div style={cardStyle.trackPad}>
               <Points type={editorType} />
             </div>
           </div>
@@ -78,4 +78,4 @@ function Menu({ isEditable, x = 0, y = 0 }: any) {
   );
 }
 
-export default Menu;
+export default Card;

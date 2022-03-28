@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import browser from 'webextension-polyfill';
-import Menu from '../components/menu/Menu';
+import Card from '../components/menu/Card';
 
 export const ContentApp = () => {
   const [isEditable, setIsEditable] = useState(false);
@@ -24,7 +24,7 @@ export const ContentApp = () => {
   return (
     <>
       <div>Menu</div>
-      <Menu isEditable={isEditable} x={window.mouseX} y={window.mouseY} />
+      <Card isEditable={isEditable} x={window.mouseX} y={window.mouseY} />
     </>
   );
 };

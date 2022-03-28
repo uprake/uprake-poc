@@ -1,6 +1,6 @@
 import { CSSProperties } from 'react';
 
-export const menuStyle: Record<string, CSSProperties> = {
+export const cardStyle: Record<string, CSSProperties> = {
   rnd: {
     background: 'red',
     boxShadow: ' 0 0 1rem 0 rgba(0, 0, 0, .2)',
