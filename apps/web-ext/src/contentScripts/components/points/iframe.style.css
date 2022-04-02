@@ -1,0 +1,8 @@
+body {
+  background-color: 'red';
+}
+
+.temp {
+  background: 'green';
+  border: '2px solid blue';
+}

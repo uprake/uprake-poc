@@ -25,7 +25,8 @@ export const style: Record<string, CSSProperties> = {
     paddingLeft: '10px',
   },
   pointEditor: {
-    flexGrow: 1,
+    // flexGrow: 1,
+    width: '85%',
   },
 };
 
@@ -37,13 +38,13 @@ function pointGen({ variant }: IPointGenArgs): CSSProperties {
   const styles: CSSProperties = {
     padding: 0,
     display: 'flex',
-    border: '1.5px solid #e11d48',
+    // border: '1.5px solid ',
     color: 'white',
     borderRadius: '5px',
   };
 
   styles.backgroundColor = pointVariantConfig[variant].bg;
-  styles.borderColor = pointVariantConfig[variant].border;
+  // styles.borderColor = pointVariantConfig[variant].border;
 
   return styles;
 }
@@ -53,6 +54,7 @@ interface IFrameGenArgs {}
 function frameGen({}: IFrameGenArgs): CSSProperties {
   const styles: CSSProperties = {
     width: '100%',
+    height: '80%',
     boxSizing: 'content-box',
   };
 

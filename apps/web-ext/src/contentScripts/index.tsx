@@ -10,7 +10,7 @@ import './style.css';
 setup({
   preflight: false,
   prefix: true,
-  hash: (a: string) => 'up-' + hash(a),
+  // hash: (a: string) => 'up-' + hash(a),
 });
 // Firefox `browser.tabs.executeScript()` requires scripts return a primitive value
 (() => {

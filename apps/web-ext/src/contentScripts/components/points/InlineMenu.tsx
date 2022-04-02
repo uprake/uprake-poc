@@ -5,6 +5,7 @@ function InlineMenu({ editor }: any) {
   return (
     editor && (
       <BubbleMenu editor={editor} tippyOptions={{ duration: 100 }}>
+        BUBBLEMENU
         <div
           style={{
             background: 'rgba(0,0,0,0.6)',

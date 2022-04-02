@@ -1,26 +1,48 @@
 // import React from 'react'
 
-import { EditorContent, useEditor } from '@tiptap/react';
+import { Editor, EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IoWarningOutline } from 'react-icons/io5';
 import { IFrame } from './IFrame';
 import InlineMenu from './InlineMenu';
 import { style, styleGen } from './style';
-
+import Paragraph from '@tiptap/extension-paragraph';
 interface PointsProp {
   type: 'tbr' | 'mpr' | 'point';
+  isEditable: boolean;
 }
 
-function Points({ type }: PointsProp) {
+function Points({ type, isEditable }: PointsProp) {
   const [content, setContent] = useState('');
   const editor = useEditor({
-    extensions: [StarterKit],
+    extensions: [
+      StarterKit,
+      // Paragraph.configure({
+      //   HTMLAttributes: {
+      //     class: ' m-0',
+      //   },
+      // }),
+    ],
     injectCSS: false,
     editorProps: {
       attributes: {
         style: 'outline: none',
       },
+    },
+    autofocus: 'end',
+    // onEnter ,
+    // setScrolling,
+    onCreate({ editor }: any) {
+      console.log('created');
+      // editor.commands.focus('end');
+    },
+
+    onFocus({}) {
+      console.log('focused');
+    },
+    onBlur({}) {
+      console.log('blured');
     },
     content: 'Hi there ',
     onUpdate({ editor }: any) {
@@ -30,18 +52,25 @@ function Points({ type }: PointsProp) {
     },
   });
 
+  useEffect(() => {
+    editor?.commands.focus('end');
+    editor?.commands;
+  }, [isEditable]);
   return (
-    <IFrame style={styleGen.frame({})}>
-      <div style={styleGen.point({ variant: type })}>
-        <div style={style.pointIcon}>
-          <IoWarningOutline />
+    <>
+      <IFrame style={styleGen.frame({})}>
+        <input type="text" placeholder="testing for fooucs" />
+        <div style={styleGen.point({ variant: type })}>
+          <div style={style.pointIcon}>
+            <IoWarningOutline />
+          </div>
+          <div id="editorWrapper" style={style.pointEditor}>
+            <InlineMenu editor={editor} />
+            <EditorContent id="editorContent" editor={editor} />
+          </div>
         </div>
-        <div style={style.pointEditor}>
-          <InlineMenu editor={editor} />
-          <EditorContent editor={editor} />
-        </div>
-      </div>
-    </IFrame>
+      </IFrame>
+    </>
   );
 }
 
