@@ -38,6 +38,7 @@ function pointGen({ variant }: IPointGenArgs): CSSProperties {
   const styles: CSSProperties = {
     padding: 0,
     display: 'flex',
+    height: '100%',
     // border: '1.5px solid ',
     color: 'white',
     borderRadius: '5px',
@@ -53,9 +54,9 @@ interface IFrameGenArgs {}
 
 function frameGen({}: IFrameGenArgs): CSSProperties {
   const styles: CSSProperties = {
-    width: '100%',
-    height: '80%',
-    boxSizing: 'content-box',
+    // width: '100%',
+    // height: '100%',
+    // boxSizing: 'content-box',
   };
 
   return styles;

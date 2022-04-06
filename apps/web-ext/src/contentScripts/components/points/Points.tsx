@@ -8,6 +8,7 @@ import { IFrame } from './IFrame';
 import InlineMenu from './InlineMenu';
 import { style, styleGen } from './style';
 import Paragraph from '@tiptap/extension-paragraph';
+
 interface PointsProp {
   type: 'tbr' | 'mpr' | 'point';
   isEditable: boolean;
@@ -58,8 +59,9 @@ function Points({ type, isEditable }: PointsProp) {
   }, [isEditable]);
   return (
     <>
-      <IFrame style={styleGen.frame({})}>
-        <input type="text" placeholder="testing for fooucs" />
+      <IFrame
+      // style={styleGen.frame({}) }
+      >
         <div style={styleGen.point({ variant: type })}>
           <div style={style.pointIcon}>
             <IoWarningOutline />
@@ -70,6 +72,9 @@ function Points({ type, isEditable }: PointsProp) {
           </div>
         </div>
       </IFrame>
+      <hr />
+      <hr />
+      <hr />
     </>
   );
 }

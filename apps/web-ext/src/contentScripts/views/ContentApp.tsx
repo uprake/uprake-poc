@@ -8,6 +8,7 @@ export const ContentApp = () => {
   // const [y, setY] = useState<any>(0);
 
   const toggleEditor = (obj: any) => {
+    console.log(isEditable);
     setIsEditable((a) => !a);
   };
 
@@ -24,7 +25,12 @@ export const ContentApp = () => {
   return (
     <>
       <div>Menu</div>
-      <Card isEditable={isEditable} x={window.mouseX} y={window.mouseY} />
+      <Card
+        isEditable={isEditable}
+        toggleEditor={toggleEditor}
+        x={window.mouseX}
+        y={window.mouseY}
+      />
     </>
   );
 };
