@@ -27,6 +27,7 @@ export const style: Record<string, CSSProperties> = {
   pointEditor: {
     // flexGrow: 1,
     width: '85%',
+    height: '100%',
   },
 };
 
@@ -38,7 +39,7 @@ function pointGen({ variant }: IPointGenArgs): CSSProperties {
   const styles: CSSProperties = {
     padding: 0,
     display: 'flex',
-    height: '100%',
+    // height: '100%',
     // border: '1.5px solid ',
     color: 'white',
     borderRadius: '5px',

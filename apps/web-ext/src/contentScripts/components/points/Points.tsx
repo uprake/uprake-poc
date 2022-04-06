@@ -72,9 +72,6 @@ function Points({ type, isEditable }: PointsProp) {
           </div>
         </div>
       </IFrame>
-      <hr />
-      <hr />
-      <hr />
     </>
   );
 }
