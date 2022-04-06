@@ -45,20 +45,14 @@ function Card({ isEditable, toggleEditor, x = 0, y = 0 }: any) {
     toggleEditor();
   };
 
-  const dropDownlist = () => {
+  const openList = () => {
     console.log('list clicked');
   };
 
-  useEffect(() => {
-    console.log(content[editorType]);
-  }, [editorType]);
+  // useEffect(() => {
+  //   console.log(content[editorType]);
+  // }, [editorType]);
 
-  useEffect(() => {
-    console.log('runs evry time');
-  });
-  useEffect(() => {
-    console.log('dependenices changes');
-  }, [isEditable, toggleEditor, x, y]);
   return (
     <div>
       <Rnd
@@ -67,8 +61,8 @@ function Card({ isEditable, toggleEditor, x = 0, y = 0 }: any) {
         default={{
           x: x,
           y: y,
-          width: '400',
-          height: '400',
+          width: '320',
+          height: '320',
         }}
         minHeight="300"
         minWidth={320}
@@ -90,8 +84,9 @@ function Card({ isEditable, toggleEditor, x = 0, y = 0 }: any) {
           <div className={tw`h-full w-full py-5`}>
             <Points type={editorType} isEditable={isEditable}></Points>
           </div>
-          <div>
+          <div style={{ fontSize: '14px' }}>
             <footer>footer</footer>
+            <button onClick={openList}>list</button>
           </div>
         </div>
       </Rnd>

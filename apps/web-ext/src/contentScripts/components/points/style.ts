@@ -28,6 +28,7 @@ export const style: Record<string, CSSProperties> = {
     // flexGrow: 1,
     width: '85%',
     height: '100%',
+    paddingTop: '10px',
   },
 };
 

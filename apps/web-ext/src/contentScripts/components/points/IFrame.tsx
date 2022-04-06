@@ -5,13 +5,14 @@ import './iframe.style.css';
 export const IFrame = ({ children, style, ...props }: any) => {
   const [contentRef, setContentRef] = useState<any>(null);
   const mountNode = contentRef?.contentWindow?.document?.body;
-  contentRef?.contentWindow?.focus();
   useEffect(() => {
     console.log(contentRef);
     contentRef && (contentRef.contentWindow.document.body.style.margin = '0');
     if (contentRef) {
       // not focusing properly
       mountNode.style.margin = '0';
+      contentRef?.contentWindow?.focus();
+
       // setTimeout(contentRef?.contentWindow?.focus(), 100);
     }
   }, [contentRef]);

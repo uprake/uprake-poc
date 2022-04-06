@@ -19,11 +19,11 @@ function Points({ type, isEditable }: PointsProp) {
   const editor = useEditor({
     extensions: [
       StarterKit,
-      // Paragraph.configure({
-      //   HTMLAttributes: {
-      //     class: ' m-0',
-      //   },
-      // }),
+      Paragraph.configure({
+        HTMLAttributes: {
+          style: 'margin : 3px',
+        },
+      }),
     ],
     injectCSS: false,
     editorProps: {
@@ -35,7 +35,7 @@ function Points({ type, isEditable }: PointsProp) {
     // onEnter ,
     // setScrolling,
     onCreate({ editor }: any) {
-      console.log('created');
+      // console.log('created');
       // editor.commands.focus('end');
     },
 
