@@ -4,6 +4,7 @@ import { tw } from 'twind';
 import Points from '~/contentScripts/components/points/Points';
 import { ScreenShot } from '~/contentScripts/youtube-ss/ScreenShot';
 import Button from '../buttons/Button';
+import ReactDraft from '../react-drafts/ReactDraft';
 import { cardStyle } from './card.style';
 
 declare global {
@@ -19,20 +20,22 @@ const typeOptions = {
   point: 'POINT',
 };
 
-function Card({ isEditable, toggleEditor, x = 0, y = 0 }: any) {
+function Card({
+  isEditable,
+  toggleEditor,
+  x = 0,
+  y = 0,
+  appendNotes,
+  setShowList,
+}: any) {
   const [videoEl, setVideoEl] = useState<HTMLElement>();
   const [editorType, setEditorType] = useState<keyof typeof typeOptions>('tbr');
-
-  const [content, setContent] = useState(typeOptions);
-  // content['tbr']
-
-  // const [currentEditor , setCurrentEditor ] = useState('')
-
+  const [note, setNote] = useState<any>();
   const editorRef = useRef<any>();
 
   useEffect(() => {
     editorRef.current.updatePosition({ x: x, y: y });
-  }, [x, y]);
+  }, [isEditable]);
 
   const toggleButton = (e: any) => {
     if (e.target.id != 'ss') {
@@ -47,12 +50,19 @@ function Card({ isEditable, toggleEditor, x = 0, y = 0 }: any) {
 
   const openList = () => {
     console.log('list clicked');
+    setShowList((a: any) => !a);
   };
 
-  // useEffect(() => {
-  //   console.log(content[editorType]);
-  // }, [editorType]);
+  const createNote = () => {
+    appendNotes(note, editorType);
+    setNote('New_note');
+  };
+  const clearNote = () => {
+    console.log('cancled');
+    setNote('New_note');
+  };
 
+  console.log('rerender card');
   return (
     <div>
       <Rnd
@@ -82,11 +92,20 @@ function Card({ isEditable, toggleEditor, x = 0, y = 0 }: any) {
             <ScreenShot />
           </div>
           <div className={tw`h-full w-full py-5`}>
-            <Points type={editorType} isEditable={isEditable}></Points>
+            <Points
+              type={editorType}
+              isEditable={isEditable}
+              note={note}
+              setNote={setNote}
+            ></Points>
           </div>
           <div style={{ fontSize: '14px' }}>
             <footer>footer</footer>
-            <button onClick={openList}>list</button>
+            <div>
+              <button onClick={openList}>list</button>
+              <button onClick={clearNote}>Clear</button>
+              <button onClick={createNote}>Create</button>
+            </div>
           </div>
         </div>
       </Rnd>

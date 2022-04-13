@@ -14,8 +14,7 @@ interface PointsProp {
   isEditable: boolean;
 }
 
-function Points({ type, isEditable }: PointsProp) {
-  const [content, setContent] = useState('');
+function Points({ type, isEditable, note, setNote, inList }: any) {
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -45,18 +44,31 @@ function Points({ type, isEditable }: PointsProp) {
     onBlur({}) {
       console.log('blured');
     },
-    content: 'Hi there ',
+    content: note,
     onUpdate({ editor }: any) {
       //
-      setContent(editor.getHTML());
+      // save content in the browser storage\
+
+      setNote(editor.getJSON());
       // console.log(editor.getHTML());
     },
   });
 
+  // useEffect(()=>{
+
+  // } , [note])
+
+  console.log('rerender points');
   useEffect(() => {
     editor?.commands.focus('end');
     editor?.commands;
   }, [isEditable]);
+
+  useEffect(() => {
+    if (note === 'New_note') {
+      editor?.commands.clearContent();
+    }
+  }, [note]);
   return (
     <>
       <IFrame

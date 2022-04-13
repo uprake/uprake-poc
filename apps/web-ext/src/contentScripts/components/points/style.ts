@@ -44,6 +44,7 @@ function pointGen({ variant }: IPointGenArgs): CSSProperties {
     // border: '1.5px solid ',
     color: 'white',
     borderRadius: '5px',
+    fontSize: '15px',
   };
 
   styles.backgroundColor = pointVariantConfig[variant].bg;
