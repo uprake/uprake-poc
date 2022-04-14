@@ -14,7 +14,16 @@ interface PointsProp {
   isEditable: boolean;
 }
 
-function Points({ type, isEditable, note, setNote, inList }: any) {
+function Points({
+  type,
+  isEditable,
+  initalContent,
+  note,
+  setNote,
+  inList,
+  destroyEditor,
+  setDestroyEditor,
+}: any) {
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -67,8 +76,19 @@ function Points({ type, isEditable, note, setNote, inList }: any) {
   useEffect(() => {
     if (note === 'New_note') {
       editor?.commands.clearContent();
+      setNote('');
     }
   }, [note]);
+
+  useEffect(() => {
+    editor?.commands.setContent(initalContent);
+  }, [initalContent]);
+
+  // useEffect(()=>{
+  //   if(destroyEditor){
+  //     editor?.commands.destroy()
+  //   }
+  // } , [destroyEditor])
   return (
     <>
       <IFrame

@@ -14,23 +14,22 @@ declare global {
   }
 }
 
-const typeOptions = {
-  tbr: 'TBR',
-  mpr: 'MPR',
-  point: 'POINT',
-};
-
 function Card({
   isEditable,
   toggleEditor,
   x = 0,
   y = 0,
+  initalContent,
+  note,
+  setNote,
+  editorType,
+  setEditorType,
   appendNotes,
   setShowList,
+  setDestroyEditor,
+  destroyEditor,
 }: any) {
   const [videoEl, setVideoEl] = useState<HTMLElement>();
-  const [editorType, setEditorType] = useState<keyof typeof typeOptions>('tbr');
-  const [note, setNote] = useState<any>();
   const editorRef = useRef<any>();
 
   useEffect(() => {
@@ -54,11 +53,13 @@ function Card({
   };
 
   const createNote = () => {
-    appendNotes(note, editorType);
+    appendNotes();
     setNote('New_note');
   };
   const clearNote = () => {
     console.log('cancled');
+
+    // destroy editor
     setNote('New_note');
   };
 
@@ -67,7 +68,10 @@ function Card({
     <div>
       <Rnd
         ref={editorRef}
-        style={{ ...cardStyle.rnd, display: isEditable ? 'block' : 'none' }}
+        style={{
+          ...cardStyle.rnd,
+          display: isEditable ? 'block' : 'none',
+        }}
         default={{
           x: x,
           y: y,
@@ -95,8 +99,11 @@ function Card({
             <Points
               type={editorType}
               isEditable={isEditable}
+              initalContent={initalContent}
               note={note}
               setNote={setNote}
+              destroyEditor
+              setDestroyEditor={setDestroyEditor}
             ></Points>
           </div>
           <div style={{ fontSize: '14px' }}>

@@ -9,13 +9,22 @@ interface NoteInterface {
   type: 'tbr' | 'mpr' | 'point';
   note: any;
 }
+const typeOptions = {
+  tbr: 'TBR',
+  mpr: 'MPR',
+  point: 'POINT',
+};
 
 export const ContentApp = () => {
   const [isEditable, setIsEditable] = useState(false);
-
+  const [initalContent, setInitalContent] = useState<any>();
+  const [timeStamp, setTimeStamp] = useState<any>();
+  const [note, setNote] = useState<any>();
+  const [editorType, setEditorType] = useState<keyof typeof typeOptions>('tbr');
   const [allNotes, setAllNotes] = useState<NoteInterface[]>([]);
-
   const [showList, setShowList] = useState(false);
+  const [destroyEditor, setDestroyEditor] = useState(false);
+
   // const [x, setX] = useState<any>(0);
   // const [y, setY] = useState<any>(0);
 
@@ -24,11 +33,14 @@ export const ContentApp = () => {
     setIsEditable((a) => !a);
   };
 
-  const appendNotes = (note: any, type: any) => {
+  const appendNotes = () => {
+    if (note === '' || !note) {
+      return;
+    }
     const count = allNotes.length;
     const newNote: NoteInterface = {
       time: new Date().toLocaleTimeString(),
-      type: type,
+      type: editorType,
       note: note,
     };
     console.log('before append ', newNote);
@@ -64,11 +76,29 @@ export const ContentApp = () => {
         x={window.mouseX}
         y={window.mouseY}
         // allNotes={allNotes}
+        initalContent={initalContent}
+        note={note}
+        setNote={setNote}
         appendNotes={appendNotes}
+        editorType={editorType}
+        setEditorType={setEditorType}
         setShowList={setShowList}
+        // destroyEditor
+        // setDestroyEditor={setDestroyEditor}
       />
 
-      {showList ? <List allNotes={allNotes}> </List> : ''}
+      {showList ? (
+        <List
+          allNotes={allNotes}
+          setAllNotes={setAllNotes}
+          appendNotes={appendNotes}
+          setNote={setNote}
+          setEditorType={setEditorType}
+          setInitalContent={setInitalContent}
+        />
+      ) : (
+        ''
+      )}
     </>
   );
 };
