@@ -5,6 +5,7 @@ import Points from '~/contentScripts/components/points/Points';
 import { ScreenShot } from '~/contentScripts/youtube-ss/ScreenShot';
 import Button from '../buttons/Button';
 import ReactDraft from '../react-drafts/ReactDraft';
+import { getTimeInMins } from '../video/video.utils';
 import { cardStyle } from './card.style';
 
 declare global {
@@ -27,6 +28,8 @@ function Card({
   appendNotes,
   setShowList,
   setDestroyEditor,
+  currentTimeStamp,
+  setCurrentTimeStampsetTimeStamp,
   destroyEditor,
 }: any) {
   const [videoEl, setVideoEl] = useState<HTMLElement>();
@@ -63,6 +66,11 @@ function Card({
     setNote('New_note');
   };
 
+  const syncTimeStamp = () => {
+    const video = document.getElementsByTagName('video')[0];
+    setCurrentTimeStampsetTimeStamp(video.currentTime);
+  };
+
   console.log('rerender card');
   return (
     <div>
@@ -94,7 +102,11 @@ function Card({
             <Button id="mpr" onClick={toggleButton} title="MPR"></Button>
             <Button id="point" onClick={toggleButton} title="POINT"></Button>
             <ScreenShot />
+            <button onClick={syncTimeStamp}> sync</button>
           </div>
+          <hr />
+
+          <div>Time @ {getTimeInMins(currentTimeStamp)}</div>
           <div className={tw`h-full w-full py-5`}>
             <Points
               type={editorType}

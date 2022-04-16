@@ -3,7 +3,11 @@ import browser from 'webextension-polyfill';
 import List from '../components/list/List';
 import Card from '../components/menu/Card';
 import ReactDraft from '../components/react-drafts/ReactDraft';
-
+import {
+  getCurrentVideo,
+  getTimeInMins,
+  getUTVideoIdFromUrl,
+} from '../components/video/video.utils';
 interface NoteInterface {
   time: string;
   type: 'tbr' | 'mpr' | 'point';
@@ -18,12 +22,15 @@ const typeOptions = {
 export const ContentApp = () => {
   const [isEditable, setIsEditable] = useState(false);
   const [initalContent, setInitalContent] = useState<any>();
+  const [currentTimeStamp, setCurrentTimeStampsetTimeStamp] = useState<any>(0);
   const [timeStamp, setTimeStamp] = useState<any>();
   const [note, setNote] = useState<any>();
   const [editorType, setEditorType] = useState<keyof typeof typeOptions>('tbr');
   const [allNotes, setAllNotes] = useState<NoteInterface[]>([]);
   const [showList, setShowList] = useState(false);
   const [destroyEditor, setDestroyEditor] = useState(false);
+
+  const [currVideo, setCurrVideo] = useState<any>();
 
   // const [x, setX] = useState<any>(0);
   // const [y, setY] = useState<any>(0);
@@ -39,7 +46,7 @@ export const ContentApp = () => {
     }
     const count = allNotes.length;
     const newNote: NoteInterface = {
-      time: new Date().toLocaleTimeString(),
+      time: getTimeInMins(currentTimeStamp),
       type: editorType,
       note: note,
     };
@@ -66,6 +73,17 @@ export const ContentApp = () => {
     browser.runtime.onMessage.addListener(toggleEditor);
   }, []);
 
+  useEffect(() => {
+    // console.log(getUTVideoIdFromUrl());
+    // const currentVideo = getCurrentVideo();
+
+    if (isEditable) {
+      const currentVideo = document.getElementsByTagName('video')[0];
+      console.log(currentVideo);
+      console.log(currentVideo?.currentTime);
+      setCurrentTimeStampsetTimeStamp(currentVideo?.currentTime);
+    }
+  }, [isEditable]);
   return (
     <>
       <div style={{ fontSize: '16px' }}>Menu</div>
@@ -83,6 +101,8 @@ export const ContentApp = () => {
         editorType={editorType}
         setEditorType={setEditorType}
         setShowList={setShowList}
+        currentTimeStamp={currentTimeStamp}
+        setCurrentTimeStampsetTimeStamp={setCurrentTimeStampsetTimeStamp}
         // destroyEditor
         // setDestroyEditor={setDestroyEditor}
       />

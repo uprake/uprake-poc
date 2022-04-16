@@ -17,23 +17,39 @@ function List({
     setInitalContent(note.note);
   };
 
-  const deleteNote = (note: any) => {
+  const deleteNote = (index: any, note: any) => {
+    console.log(index);
+    // delete note by timestamp
+    // setAllNotes((notes: any) => {
+    //   const temp = notes.filter((a: any) => a.time != note.time);
+    //   console.log(temp);
+    //   return temp;
+    // });
+    // delete note by index(key)
     setAllNotes((notes: any) => {
-      const temp = notes.filter((a: any) => a.time != note.time);
-      console.log(temp);
+      const temp = notes.filter((a: any, idx: any) => idx != index);
+      console.log(index);
+
       return temp;
     });
+    // const notes = allNotes.splice(index, 1);
+    // setAllNotes(() => notes);
+    // setAllNotes((notes: any) => {
+    //   notes.splice(index, 1);
+    //   console.log(notes);
+    //   return notes;
+    // });
   };
   return (
     <div>
       <div>All NOTES</div>
       {allNotes.map((note: any, key: any) => (
-        <div>
-          <div key={key} id={note.time} onClick={() => onClick(note)}>
+        <div key={key}>
+          <div id={note.time} onClick={() => onClick(note)}>
             <ListPoint note={note}></ListPoint>
           </div>
           <div>
-            <button onClick={() => deleteNote(note)}>x</button>
+            <button onClick={() => deleteNote(key, note)}>x</button>
           </div>
         </div>
       ))}
