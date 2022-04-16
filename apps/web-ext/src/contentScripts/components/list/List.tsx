@@ -1,8 +1,10 @@
 import React from 'react';
+import { tw } from 'twind';
 import ListPoint from './ListPoint';
 
 function List({
   allNotes,
+  setCurrentTimeStamp,
   setAllNotes,
   appendNotes,
   setNote,
@@ -12,6 +14,7 @@ function List({
   const onClick = (note: any) => {
     // appendNotes();
     console.log(note);
+    setCurrentTimeStamp(note.time);
     setNote(note.note);
     setEditorType(note.type);
     setInitalContent(note.note);
@@ -41,7 +44,7 @@ function List({
     // });
   };
   return (
-    <div>
+    <div className={tw`w-[320px]`}>
       <div>All NOTES</div>
       {allNotes.map((note: any, key: any) => (
         <div key={key}>

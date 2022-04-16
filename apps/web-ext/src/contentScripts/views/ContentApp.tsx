@@ -22,8 +22,7 @@ const typeOptions = {
 export const ContentApp = () => {
   const [isEditable, setIsEditable] = useState(false);
   const [initalContent, setInitalContent] = useState<any>();
-  const [currentTimeStamp, setCurrentTimeStampsetTimeStamp] = useState<any>(0);
-  const [timeStamp, setTimeStamp] = useState<any>();
+  const [currentTimeStamp, setCurrentTimeStamp] = useState<any>(0);
   const [note, setNote] = useState<any>();
   const [editorType, setEditorType] = useState<keyof typeof typeOptions>('tbr');
   const [allNotes, setAllNotes] = useState<NoteInterface[]>([]);
@@ -46,12 +45,18 @@ export const ContentApp = () => {
     }
     const count = allNotes.length;
     const newNote: NoteInterface = {
-      time: getTimeInMins(currentTimeStamp),
+      time: currentTimeStamp,
       type: editorType,
       note: note,
     };
     console.log('before append ', newNote);
-    setAllNotes(() => [...allNotes, newNote]);
+    setAllNotes(() => {
+      const notes = [...allNotes, newNote];
+      notes.sort((a: any, b: any) => {
+        return a.time > b.time ? 1 : -1;
+      });
+      return notes;
+    });
   };
 
   useEffect(() => {
@@ -81,7 +86,7 @@ export const ContentApp = () => {
       const currentVideo = document.getElementsByTagName('video')[0];
       console.log(currentVideo);
       console.log(currentVideo?.currentTime);
-      setCurrentTimeStampsetTimeStamp(currentVideo?.currentTime);
+      setCurrentTimeStamp(currentVideo?.currentTime);
     }
   }, [isEditable]);
   return (
@@ -102,7 +107,7 @@ export const ContentApp = () => {
         setEditorType={setEditorType}
         setShowList={setShowList}
         currentTimeStamp={currentTimeStamp}
-        setCurrentTimeStampsetTimeStamp={setCurrentTimeStampsetTimeStamp}
+        setCurrentTimeStamp={setCurrentTimeStamp}
         // destroyEditor
         // setDestroyEditor={setDestroyEditor}
       />
@@ -110,6 +115,7 @@ export const ContentApp = () => {
       {showList ? (
         <List
           allNotes={allNotes}
+          setCurrentTimeStamp={setCurrentTimeStamp}
           setAllNotes={setAllNotes}
           appendNotes={appendNotes}
           setNote={setNote}

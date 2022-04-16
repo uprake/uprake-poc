@@ -10,6 +10,7 @@ import Text from '@tiptap/extension-text';
 import { RiDivideFill } from 'react-icons/ri';
 import { tw } from 'twind';
 import { FiClock } from 'react-icons/fi';
+import { getTimeInMins } from '../video/video.utils';
 
 function ListPoint({ note }: any) {
   const output = useMemo(() => {
@@ -33,7 +34,7 @@ function ListPoint({ note }: any) {
           <span>
             <FiClock />
           </span>
-          <span> {note.time}</span>
+          <span> {getTimeInMins(note.time)}</span>
         </div>
         <div dangerouslySetInnerHTML={{ __html: output }} />
       </div>

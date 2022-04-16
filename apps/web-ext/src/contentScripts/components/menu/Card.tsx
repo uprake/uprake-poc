@@ -29,7 +29,7 @@ function Card({
   setShowList,
   setDestroyEditor,
   currentTimeStamp,
-  setCurrentTimeStampsetTimeStamp,
+  setCurrentTimeStamp,
   destroyEditor,
 }: any) {
   const [videoEl, setVideoEl] = useState<HTMLElement>();
@@ -68,12 +68,12 @@ function Card({
 
   const syncTimeStamp = () => {
     const video = document.getElementsByTagName('video')[0];
-    setCurrentTimeStampsetTimeStamp(video.currentTime);
+    setCurrentTimeStamp(video.currentTime);
   };
 
   console.log('rerender card');
   return (
-    <div>
+    <div style={{ fontSize: '14px' }}>
       <Rnd
         ref={editorRef}
         style={{

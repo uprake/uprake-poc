@@ -27,6 +27,7 @@ export const IFrame = ({ children, style, ...props }: any) => {
           width: '100%',
           height: '100%',
           overflow: 'auto',
+          fontSize: '26px !important',
           // padding: '10px 0 ',
           // ...style,
         }}
