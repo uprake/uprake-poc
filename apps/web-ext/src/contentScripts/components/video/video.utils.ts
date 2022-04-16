@@ -57,3 +57,8 @@ export const getUTVideoIdFromUrl = () => {
 
   return utbURL && utbURL[1];
 };
+
+export const skipVideoToTime = (time: any) => {
+  const video = document.getElementsByTagName('video')[0];
+  video.currentTime = time;
+};

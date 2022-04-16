@@ -1,5 +1,7 @@
 import React from 'react';
+import { skipUntil } from 'rxjs';
 import { tw } from 'twind';
+import { skipVideoToTime } from '../video/video.utils';
 import ListPoint from './ListPoint';
 
 function List({
@@ -18,6 +20,7 @@ function List({
     setNote(note.note);
     setEditorType(note.type);
     setInitalContent(note.note);
+    skipVideoToTime(note.time);
   };
 
   const deleteNote = (index: any, note: any) => {
