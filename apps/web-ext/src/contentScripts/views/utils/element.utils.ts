@@ -24,3 +24,37 @@ export function elementChain(query: string) {
 
   return chain;
 }
+
+export function getEditorPositionX(x: any, editor: any) {
+  console.log('before x ', x);
+
+  if (x < 0) {
+    return 0;
+  }
+  if (x + parseInt(editor.current.resizable.state.width) > window.innerWidth) {
+    console.log(window.innerWidth - editor.current.resizable.state.width);
+    return window.innerWidth - editor.current.resizable.state.width;
+  }
+
+  return x;
+}
+
+export function getEditorPositionY(y: any, editor: any) {
+  console.log('before y  ', y);
+  console.log(editor.current.resizable.state.height);
+  console.log(y + editor.current.resizable.state.height);
+  console.log(window.innerHeight);
+  if (y < 0) {
+    console.log(0);
+    return 0;
+  }
+  if (
+    y + parseInt(editor.current.resizable.state.height) >
+    window.innerHeight
+  ) {
+    console.log(window.innerHeight - editor.current.resizable.state.height);
+    return window.innerHeight - editor.current.resizable.state.height;
+  }
+
+  return y;
+}

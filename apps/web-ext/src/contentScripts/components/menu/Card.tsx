@@ -2,6 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Rnd } from 'react-rnd';
 import { tw } from 'twind';
 import Points from '~/contentScripts/components/points/Points';
+import {
+  getEditorPositionX,
+  getEditorPositionY,
+} from '~/contentScripts/views/utils/element.utils';
 import { ScreenShot } from '~/contentScripts/youtube-ss/ScreenShot';
 import Button from '../buttons/Button';
 import ReactDraft from '../react-drafts/ReactDraft';
@@ -36,7 +40,10 @@ function Card({
   const editorRef = useRef<any>();
 
   useEffect(() => {
-    editorRef.current.updatePosition({ x: x, y: y });
+    editorRef.current.updatePosition({
+      x: getEditorPositionX(x, editorRef),
+      y: getEditorPositionY(y, editorRef),
+    });
   }, [isEditable]);
 
   const toggleButton = (e: any) => {

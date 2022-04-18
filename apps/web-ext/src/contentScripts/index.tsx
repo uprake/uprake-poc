@@ -21,7 +21,7 @@ setup({
     console.log(`[vitesse-webext] Navigate from page "${data}"`);
   });
 
-  const style = 'right-0 left-0 top-0 fixed  z-[10000000] ';
+  const style = ' left-0 top-0 fixed  z-[10000000] ';
 
   // mount component to context window
   const container = document.createElement('div');

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { tw } from 'twind';
 import browser from 'webextension-polyfill';
 import List from '../components/list/List';
 import Card from '../components/menu/Card';
@@ -90,7 +91,7 @@ export const ContentApp = () => {
     }
   }, [isEditable]);
   return (
-    <>
+    <div className={tw`w-[320px]`}>
       <div style={{ fontSize: '16px' }}>Menu</div>
       {/* <ReactDraft /> */}
       <Card
@@ -125,6 +126,6 @@ export const ContentApp = () => {
       ) : (
         ''
       )}
-    </>
+    </div>
   );
 };
