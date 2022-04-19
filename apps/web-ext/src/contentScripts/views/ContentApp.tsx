@@ -90,6 +90,12 @@ export const ContentApp = () => {
       setCurrentTimeStamp(currentVideo?.currentTime);
     }
   }, [isEditable]);
+
+  useEffect(() => {
+    if (allNotes.length > 0 && !showList) {
+      setShowList(true);
+    }
+  }, [allNotes]);
   return (
     <div className={tw`w-[320px]`}>
       <div style={{ fontSize: '16px' }}>Menu</div>
