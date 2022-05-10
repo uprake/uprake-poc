@@ -9,6 +9,20 @@ import {
   getTimeInMins,
   getUTVideoIdFromUrl,
 } from '../components/video/video.utils';
+
+import { db } from '~/contentScripts/firebase';
+import {
+  addDoc,
+  arrayUnion,
+  collection,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+} from 'firebase/firestore';
+import { stringify } from 'querystring';
+import { update } from 'lodash';
+
 interface NoteInterface {
   time: string;
   type: 'tbr' | 'mpr' | 'point';
@@ -28,19 +42,15 @@ export const ContentApp = () => {
   const [editorType, setEditorType] = useState<keyof typeof typeOptions>('tbr');
   const [allNotes, setAllNotes] = useState<NoteInterface[]>([]);
   const [showList, setShowList] = useState(false);
-  const [destroyEditor, setDestroyEditor] = useState(false);
-
-  const [currVideo, setCurrVideo] = useState<any>();
-
-  // const [x, setX] = useState<any>(0);
-  // const [y, setY] = useState<any>(0);
+  const videoId = getUTVideoIdFromUrl() ?? '';
+  // const notesCollectionRef = collection(db, videoId);
 
   const toggleEditor = (obj: any) => {
     console.log(isEditable);
     setIsEditable((a) => !a);
   };
 
-  const appendNotes = () => {
+  const appendNotes = async () => {
     if (note === '' || !note) {
       return;
     }
@@ -50,13 +60,22 @@ export const ContentApp = () => {
       type: editorType,
       note: note,
     };
-    console.log('before append ', newNote);
-    setAllNotes(() => {
-      const notes = [...allNotes, newNote];
-      notes.sort((a: any, b: any) => {
-        return a.time > b.time ? 1 : -1;
+
+    const videoNotesRef = doc(db, 'notes', 'id_' + getUTVideoIdFromUrl());
+    const docSnap = await getDoc(videoNotesRef);
+
+    if (docSnap.exists()) {
+      await updateDoc(videoNotesRef, {
+        notes: arrayUnion(newNote),
       });
-      return notes;
+    } else {
+      await setDoc(videoNotesRef, {
+        src: window.location.href,
+        notes: [newNote],
+      });
+    }
+    setAllNotes((notes: any) => {
+      return [...notes, newNote];
     });
   };
 
@@ -65,24 +84,10 @@ export const ContentApp = () => {
       window.mouseX = e.clientX;
       window.mouseY = e.clientY;
     };
-  }, []);
-
-  useEffect(() => {
-    console.log('allNotes', allNotes);
-  }, [allNotes]);
-
-  useEffect(() => {
-    console.log(showList);
-  }, [showList]);
-
-  useEffect(() => {
     browser.runtime.onMessage.addListener(toggleEditor);
   }, []);
 
   useEffect(() => {
-    // console.log(getUTVideoIdFromUrl());
-    // const currentVideo = getCurrentVideo();
-
     if (isEditable) {
       const currentVideo = document.getElementsByTagName('video')[0];
       console.log(currentVideo);
@@ -96,16 +101,27 @@ export const ContentApp = () => {
       setShowList(true);
     }
   }, [allNotes]);
+
+  useEffect(() => {
+    const videoNotesRef = doc(db, 'notes', 'id_' + getUTVideoIdFromUrl());
+    getDoc(videoNotesRef)
+      .then((res: any) => {
+        setAllNotes(res.data().notes);
+        console.log(res.data().notes);
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <div className={tw`w-[320px]`}>
       <div style={{ fontSize: '16px' }}>Menu</div>
-      {/* <ReactDraft /> */}
       <Card
         isEditable={isEditable}
         toggleEditor={toggleEditor}
         x={window.mouseX}
         y={window.mouseY}
-        // allNotes={allNotes}
         initalContent={initalContent}
         note={note}
         setNote={setNote}
@@ -115,10 +131,7 @@ export const ContentApp = () => {
         setShowList={setShowList}
         currentTimeStamp={currentTimeStamp}
         setCurrentTimeStamp={setCurrentTimeStamp}
-        // destroyEditor
-        // setDestroyEditor={setDestroyEditor}
       />
-
       {showList ? (
         <List
           allNotes={allNotes}

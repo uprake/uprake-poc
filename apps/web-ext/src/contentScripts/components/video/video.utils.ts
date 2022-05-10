@@ -1,4 +1,5 @@
 import { doc } from 'prettier';
+import { stringify } from 'querystring';
 
 export const isVisible = (video: any) => {
   // check if the video in viewport
@@ -55,7 +56,8 @@ export const getUTVideoIdFromUrl = () => {
   const utbURL = url.match(youtube_regex);
   console.log(utbURL);
 
-  return utbURL && utbURL[1];
+  const id = utbURL ? utbURL[1] : '';
+  return id;
 };
 
 export const skipVideoToTime = (time: any) => {

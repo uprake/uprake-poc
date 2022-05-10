@@ -1,14 +1,15 @@
+import { collection } from 'firebase/firestore';
 import React from 'react';
 import { skipUntil } from 'rxjs';
 import { tw } from 'twind';
-import { skipVideoToTime } from '../video/video.utils';
+import { db } from '~/contentScripts/firebase';
+import { getUTVideoIdFromUrl, skipVideoToTime } from '../video/video.utils';
 import ListPoint from './ListPoint';
 
 function List({
   allNotes,
   setCurrentTimeStamp,
   setAllNotes,
-  appendNotes,
   setNote,
   setEditorType,
   setInitalContent,
@@ -32,6 +33,10 @@ function List({
     //   return temp;
     // });
     // delete note by index(key)
+
+    const videoId = getUTVideoIdFromUrl() ?? '';
+    const notesCollectionRef = collection(db, videoId);
+
     setAllNotes((notes: any) => {
       const temp = notes.filter((a: any, idx: any) => idx != index);
       console.log(index);

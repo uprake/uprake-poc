@@ -98,7 +98,7 @@ function Points({
           <div style={style.pointIcon}>
             <IoWarningOutline />
           </div>
-          <div id="editorWrapper" style={style.pointEditor}>
+          <div id="editorWrapper">
             <InlineMenu editor={editor} />
             <EditorContent id="editorContent" editor={editor} />
           </div>

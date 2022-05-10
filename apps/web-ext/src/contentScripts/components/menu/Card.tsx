@@ -1,7 +1,9 @@
+import { addDoc, collection } from 'firebase/firestore';
 import React, { useEffect, useRef, useState } from 'react';
 import { Rnd } from 'react-rnd';
 import { tw } from 'twind';
 import Points from '~/contentScripts/components/points/Points';
+
 import {
   getEditorPositionX,
   getEditorPositionY,
@@ -11,7 +13,6 @@ import Button from '../buttons/Button';
 import ReactDraft from '../react-drafts/ReactDraft';
 import { getTimeInMins } from '../video/video.utils';
 import { cardStyle } from './card.style';
-
 declare global {
   interface Window {
     mouseX: number;
@@ -62,9 +63,11 @@ function Card({
     setShowList((a: any) => !a);
   };
 
-  const createNote = () => {
+  const createNote = async () => {
     appendNotes();
     setNote('New_note');
+
+    // fireabase
   };
   const clearNote = () => {
     console.log('cancled');
@@ -121,8 +124,8 @@ function Card({
               initalContent={initalContent}
               note={note}
               setNote={setNote}
-              destroyEditor
-              setDestroyEditor={setDestroyEditor}
+              // destroyEditor
+              // setDestroyEditor={setDestroyEditor}
             ></Points>
           </div>
           <div style={{ fontSize: '14px' }}>
