@@ -5,14 +5,15 @@ import { EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { doc } from 'prettier';
 import { useEffect, useState } from 'react';
-import { IFrame } from './IFrame';
+import { IFrame } from '../IFrame';
+import { IEditorProps } from './editor.interface';
 
 interface PointsProp {
   type: 'tbr' | 'mpr' | 'point';
   isEditable: boolean;
 }
 
-function Editor({ editorContent, setCurrNote, isEditable }: any) {
+function Editor({ editorContent, setCurrNote, isEditable }: IEditorProps) {
   const [iframeRef, setIframeRef] = useState<any>(null);
 
   console.log('editor rendered');
@@ -58,7 +59,6 @@ function Editor({ editorContent, setCurrNote, isEditable }: any) {
   });
 
   useEffect(() => {
-    console.log('focused');
     editor?.commands.focus('end');
   }, [isEditable]);
 
@@ -66,7 +66,6 @@ function Editor({ editorContent, setCurrNote, isEditable }: any) {
     editor?.commands.setContent(editorContent);
   }, [editorContent]);
 
-  console.log(document.activeElement);
   return (
     <>
       <IFrame

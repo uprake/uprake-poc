@@ -1,5 +1,8 @@
+import { JSONContent } from '@tiptap/react';
 import React, { useEffect, useState } from 'react';
+import { MouseEventHandler } from 'react';
 import { tw } from 'twind';
+import { INote } from '~/contentScripts/interfaces/shared.interace';
 import {
   addNote,
   setActiveNote,
@@ -7,62 +10,20 @@ import {
   updateNote,
 } from '../../redux/features/notes/notesSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks/hooks';
-import Editor from '../Editor';
+import { emptyContent, emptyNote, getEmptyNote } from '../data/note.data';
+import Editor from '../editor/Editor';
+
 import {
   getCurrentTimeStamp,
   getTimeInMins,
   skipVideoToTime,
 } from '../utils/video.utils';
+import { ICardProps } from './card.interface';
 import { styleGen } from './card.style';
 
-const initialContent = {
-  type: 'doc',
-  content: [
-    {
-      type: 'paragraph',
-      content: [
-        {
-          type: 'text',
-          text: 'Example Text',
-        },
-      ],
-    },
-  ],
-};
-
-const emptyContent = {
-  type: 'doc',
-  content: [
-    {
-      type: 'paragraph',
-    },
-  ],
-};
-const intialNote = {
-  id: -2,
-  noteType: 'tbr',
-  time: 0,
-  content: initialContent,
-};
-const emptyNote = {
-  id: -1,
-  noteType: 'tbr',
-  time: 0,
-  content: emptyContent,
-};
-
-const getEmptyNote = (type: any = 'tbr') => {
-  return {
-    id: -1,
-    noteType: 'tbr',
-    time: getCurrentTimeStamp(),
-    content: emptyContent,
-  };
-};
-
-function Card({ isEditable, setIsEditable }: any) {
-  const [currNote, setCurrNote] = useState<any>(emptyNote);
-  const [editorContent, setEditorContent] = useState<any>(emptyContent);
+function Card({ isEditable, setIsEditable }: ICardProps) {
+  const [currNote, setCurrNote] = useState<INote>(emptyNote);
+  const [editorContent, setEditorContent] = useState<JSONContent>(emptyContent);
   const notes = useAppSelector((state) => state.notes);
   const dispatch = useAppDispatch();
   const activeNote = useAppSelector((state) => state.notes.activeNote);
@@ -77,7 +38,10 @@ function Card({ isEditable, setIsEditable }: any) {
     console.log('currNote', currNote);
     console.log('editorContent', editorContent);
 
-    if (currNote.content?.content[0].content) {
+    if (
+      currNote.content?.content?.length &&
+      currNote.content?.content[0].content
+    ) {
       dispatch(
         addNote({
           ...currNote,
@@ -93,7 +57,10 @@ function Card({ isEditable, setIsEditable }: any) {
 
   const upateNoteHandler = () => {
     console.log(currNote);
-    if (currNote.content?.content[0].content) {
+    if (
+      currNote.content?.content?.length &&
+      currNote.content?.content[0].content
+    ) {
       dispatch(updateNote(currNote));
     }
 
@@ -107,7 +74,10 @@ function Card({ isEditable, setIsEditable }: any) {
       addNewNoteHandler();
     } else {
       // don't directly updateNoteHandler as at the end of this functn it will again setActiveNote .
-      if (currNote.content?.content[0].content) {
+      if (
+        currNote.content?.content?.length &&
+        currNote.content?.content[0].content
+      ) {
         dispatch(updateNote(currNote));
       }
       setCurrNote(activeNote);
@@ -117,7 +87,7 @@ function Card({ isEditable, setIsEditable }: any) {
   const toggleNoteType = (e: any) => {
     console.log(e.target.id);
     if (e.target.id != 'ss') {
-      setCurrNote((note: any) => ({
+      setCurrNote((note: INote) => ({
         ...note,
         noteType: e.target.id,
       }));
@@ -125,7 +95,7 @@ function Card({ isEditable, setIsEditable }: any) {
   };
   const syncTimeHandler = () => {
     console.log(getCurrentTimeStamp());
-    setCurrNote((note: any) => ({
+    setCurrNote((note: INote) => ({
       ...note,
       time: getCurrentTimeStamp(),
     }));
@@ -136,7 +106,7 @@ function Card({ isEditable, setIsEditable }: any) {
   };
 
   const clearNote = () => {
-    setCurrNote((note: any) => ({
+    setCurrNote((note: INote) => ({
       ...note,
       content: emptyContent,
     }));
@@ -149,7 +119,10 @@ function Card({ isEditable, setIsEditable }: any) {
   };
 
   useEffect(() => {
-    if (currNote.content?.content[0].content) {
+    if (
+      currNote.content?.content?.length &&
+      currNote.content?.content[0].content
+    ) {
       addNoteHandler();
     }
     if (activeNote) {
@@ -190,7 +163,7 @@ function Card({ isEditable, setIsEditable }: any) {
       <div>Time @ {getTimeInMins(currNote.time)}</div>
       <div
         className={tw`h-full w-full py-5`}
-        style={styleGen.point({ variant: currNote.noteType })}
+        style={styleGen.point({ noteType: currNote.noteType })}
       >
         <Editor
           editorContent={editorContent}

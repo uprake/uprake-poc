@@ -5,9 +5,10 @@ import {
   getEditorPositionX,
   getEditorPositionY,
 } from '../utils/elements.utils';
+import { IDragableProps } from './dragable.interface';
 import { dragableStyle } from './dragable.style';
 
-function Dragable({ isEditable, setIsEditable, x = 0, y = 0 }: any) {
+function Dragable({ isEditable, setIsEditable, x = 0, y = 0 }: IDragableProps) {
   const editorRef = useRef<any>();
 
   useEffect(() => {

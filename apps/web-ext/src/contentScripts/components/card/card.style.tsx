@@ -1,19 +1,6 @@
 import { CSSProperties } from 'react';
-
-const pointVariantConfig = {
-  mpr: {
-    bg: 'rgba(244, 63, 94, 1)',
-    border: '#e11d48',
-  },
-  tbr: {
-    bg: '#BA77F9',
-    border: '#A855F7',
-  },
-  point: {
-    bg: '#A855F7',
-    border: '#8815F4',
-  },
-};
+import { INoteType } from '~/contentScripts/interfaces/shared.interace';
+import { pointVariantConfig } from './card.data';
 
 export const style: Record<string, CSSProperties> = {
   // mpr: pointGen({ variant: 'mpr' }),
@@ -33,10 +20,10 @@ export const style: Record<string, CSSProperties> = {
 };
 
 interface IPointGenArgs {
-  variant: keyof typeof pointVariantConfig;
+  noteType: INoteType;
 }
 
-function pointGen({ variant }: IPointGenArgs): CSSProperties {
+function pointGen({ noteType }: IPointGenArgs): CSSProperties {
   const styles: CSSProperties = {
     padding: 0,
     display: 'flex',
@@ -47,7 +34,7 @@ function pointGen({ variant }: IPointGenArgs): CSSProperties {
     fontSize: '15px',
   };
 
-  styles.backgroundColor = pointVariantConfig[variant].bg;
+  styles.backgroundColor = pointVariantConfig[noteType].bg;
   // styles.borderColor = pointVariantConfig[variant].border;
 
   return styles;
