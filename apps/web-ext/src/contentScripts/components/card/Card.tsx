@@ -1,18 +1,19 @@
+import { nanoid } from '@reduxjs/toolkit';
 import { JSONContent } from '@tiptap/react';
 import React, { useEffect, useState } from 'react';
-import { MouseEventHandler } from 'react';
 import { tw } from 'twind';
+import { getAllNotesFromFirebase } from '~/contentScripts/firebase/firebase.utils';
 import { INote } from '~/contentScripts/interfaces/shared.interace';
 import {
   addNote,
   setActiveNote,
+  setMultipleNotes,
   toggleVisible,
   updateNote,
 } from '../../redux/features/notes/notesSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks/hooks';
 import { emptyContent, emptyNote, getEmptyNote } from '../data/note.data';
 import Editor from '../editor/Editor';
-
 import {
   getCurrentTimeStamp,
   getTimeInMins,
@@ -38,12 +39,12 @@ function Card({ isEditable, setIsEditable }: ICardProps) {
       currNote.content?.content?.length &&
       currNote.content?.content[0].content
     ) {
-      dispatch(
-        addNote({
-          ...currNote,
-          id: notes.notes.length,
-        })
-      );
+      const new_note = {
+        ...currNote,
+        id: nanoid(),
+      };
+
+      dispatch(addNote(new_note));
       setEditorContent({ ...emptyContent });
       setCurrNote(getEmptyNote());
     } else {
@@ -67,12 +68,13 @@ function Card({ isEditable, setIsEditable }: ICardProps) {
       addNewNoteHandler();
     } else {
       // don't directly updateNoteHandler as at the end of this functn it will again setActiveNote .
-      if (
-        currNote.content?.content?.length &&
-        currNote.content?.content[0].content
-      ) {
-        dispatch(updateNote(currNote));
-      }
+
+      // if (
+      //   currNote.content?.content?.length &&
+      //   currNote.content?.content[0].content
+      // ) {
+      dispatch(updateNote(currNote));
+      // }
       setCurrNote(activeNote);
       setEditorContent({ ...activeNote.content });
     }
@@ -123,6 +125,11 @@ function Card({ isEditable, setIsEditable }: ICardProps) {
     }
   }, [activeNote]);
 
+  useEffect(() => {
+    getAllNotesFromFirebase().then((res: any) => {
+      dispatch(setMultipleNotes(res));
+    });
+  }, []);
   return (
     <div>
       Card

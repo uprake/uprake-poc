@@ -1,4 +1,8 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
+import {
+  addNoteToFirebase,
+  updateNotesInFirebase,
+} from '~/contentScripts/firebase/firebase.utils';
 
 const activeNote: any = null;
 
@@ -14,6 +18,11 @@ const notesSlice = createSlice({
   reducers: {
     addNote: (state, { payload }) => {
       state.notes = [...state.notes, payload];
+
+      addNoteToFirebase(payload);
+      state.notes.sort(function (a: any, b: any) {
+        return a.time - b.time;
+      });
     },
     addToNotes: (state, { payload }) => {
       if (payload.content?.content[0].content) {
@@ -30,20 +39,41 @@ const notesSlice = createSlice({
             },
           ];
         }
+
+        state.notes.sort(function (a: any, b: any) {
+          return a.time - b.time;
+        });
+
+        updateNotesInFirebase(current(state.notes));
       }
     },
     updateNote: (state, { payload }) => {
-      // const note = state.notes.find((note: any) => note.id == payload.id);
       if (payload.content?.content[0].content) {
         const index = state.notes.findIndex((el: any) => el.id == payload.id);
         state.notes[index] = payload;
       }
+      // console.log(current(state.notes));
+      state.notes.sort(function (a: any, b: any) {
+        return a.time - b.time;
+      });
 
-      //  sort the array
+      updateNotesInFirebase(current(state.notes));
+    },
+    setMultipleNotes: (state, { payload }) => {
+      state.notes = payload;
+
+      state.notes.sort(function (a: any, b: any) {
+        return a.time - b.time;
+      });
     },
 
-    deleteNote: (state, action: PayloadAction<any>) => {
-      state.notes.filter((note: any) => note != action.payload);
+    deleteNote: (state, { payload }) => {
+      (state.notes = state.notes.filter((note: any) => note.id != payload.id)),
+        state.notes.sort(function (a: any, b: any) {
+          return a.time - b.time;
+        });
+
+      updateNotesInFirebase(state.notes);
     },
     toggleVisible: (state) => {
       state.isVisible = !state.isVisible;
@@ -61,6 +91,7 @@ export const {
   addNote,
   addToNotes,
   updateNote,
+  setMultipleNotes,
   deleteNote,
   toggleVisible,
   setActiveNoteId,

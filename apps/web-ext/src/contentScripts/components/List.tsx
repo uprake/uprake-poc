@@ -5,6 +5,7 @@ import React, { useEffect } from 'react';
 import { tw } from 'twind';
 import { INote } from '../interfaces/shared.interace';
 import {
+  deleteNote,
   setActiveNote,
   setActiveNoteId,
 } from '../redux/features/notes/notesSlice';
@@ -29,6 +30,10 @@ function List() {
   const clickhandler = (note: INote) => {
     dispatch(setActiveNote(note));
   };
+  const deleteNoteHandler = (note: INote) => {
+    console.log('delete called');
+    dispatch(deleteNote(note));
+  };
 
   return (
     <div>
@@ -43,7 +48,12 @@ function List() {
               onClick={(e) => clickhandler(note)}
             >
               <div>
-                <div>@ {getTimeInMins(note.time)}</div>
+                <div>
+                  <div>@ {getTimeInMins(note.time)}</div>
+                  <button onClick={(e: any) => deleteNoteHandler(note)}>
+                    X
+                  </button>
+                </div>
 
                 <div dangerouslySetInnerHTML={{ __html: output(note) }} />
               </div>

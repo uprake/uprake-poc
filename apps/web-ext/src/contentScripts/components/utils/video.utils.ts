@@ -28,3 +28,13 @@ export const getTimeInMins = (time: any) => {
   }
   return h + ':' + m + ':' + s;
 };
+export const getUTVideoIdFromUrl = () => {
+  const url = window.location.href;
+  const youtube_regex =
+    /^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|\&v(?:i)?=))([^#\&\?]*).*/;
+  const utbURL = url.match(youtube_regex);
+  console.log(utbURL);
+
+  const id = utbURL ? utbURL[1] : '';
+  return id;
+};
