@@ -1,8 +1,10 @@
 /* eslint-disable no-console */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import { setup, tw } from 'twind';
 import { onMessage } from 'webext-bridge';
+import { store } from './redux/store/store';
 import { ContentApp } from './views/ContentApp';
 
 // Firefox `browser.tabs.executeScript()` requires scripts return a primitive value
@@ -52,7 +54,9 @@ setup({
 
   ReactDOM.render(
     <React.StrictMode>
-      <ContentApp />
+      <Provider store={store}>
+        <ContentApp />
+      </Provider>
     </React.StrictMode>,
     root
   );
