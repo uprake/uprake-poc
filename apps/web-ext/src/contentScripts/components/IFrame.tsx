@@ -4,11 +4,11 @@ import { createPortal } from 'react-dom';
 export const IFrame = ({
   children,
   style,
-  //   iframeRef,
-  //   setIframeRef,
+  iframeRef,
+  setIframeRef,
   ...props
 }: any) => {
-  const [iframeRef, setIframeRef] = useState<any>(null);
+  //   const [iframeRef, setIframeRef] = useState<any>(null);
   const mountNode = iframeRef?.contentWindow?.document?.body;
 
   console.log('iframe rendered');

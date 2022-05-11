@@ -3,6 +3,7 @@
 import Paragraph from '@tiptap/extension-paragraph';
 import { EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
+import { doc } from 'prettier';
 import { useEffect, useState } from 'react';
 import { IFrame } from './IFrame';
 
@@ -27,14 +28,14 @@ function Editor({ editorContent, setCurrNote, isEditable }: any) {
     injectCSS: false,
     editorProps: {
       attributes: {
-        style: 'outline: none',
+        // style: 'outline: none',
+        style: 'height : 100% ; outline: none',
       },
     },
     autofocus: 'end',
     // onEnter ,
     // setScrolling,
     onCreate({ editor }: any) {
-      // console.log('created');
       editor.commands.focus('end');
     },
 
@@ -65,10 +66,13 @@ function Editor({ editorContent, setCurrNote, isEditable }: any) {
     editor?.commands.setContent(editorContent);
   }, [editorContent]);
 
+  console.log(document.activeElement);
   return (
     <>
       <IFrame
-      //   iframeRef={iframeRef} setIframeRef={setIframeRef}
+        //
+        iframeRef={iframeRef}
+        setIframeRef={setIframeRef}
       >
         <div id="editorWrapper" style={{ height: '100%' }}>
           <EditorContent id="editorContent" editor={editor} />

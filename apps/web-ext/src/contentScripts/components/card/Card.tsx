@@ -63,7 +63,6 @@ const getEmptyNote = (type: any = 'tbr') => {
 function Card({ isEditable, setIsEditable }: any) {
   const [currNote, setCurrNote] = useState<any>(emptyNote);
   const [editorContent, setEditorContent] = useState<any>(emptyContent);
-  // const [initEdContent, setInitEdContent] = useState<any>(initialContent);
   const notes = useAppSelector((state) => state.notes);
   const dispatch = useAppDispatch();
   const activeNote = useAppSelector((state) => state.notes.activeNote);
