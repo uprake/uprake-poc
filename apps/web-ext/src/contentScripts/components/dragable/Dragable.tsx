@@ -24,7 +24,7 @@ function Dragable({ isEditable, setIsEditable, x = 0, y = 0 }: any) {
           ref={editorRef}
           style={{
             ...dragableStyle.rnd,
-            // display: isEditable ? 'block' : 'none',
+            display: isEditable ? 'block' : 'none',
           }}
           default={{
             x: x,

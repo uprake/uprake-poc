@@ -8,6 +8,7 @@ import {
 } from '../redux/features/notes/notesSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks/hooks';
 import { styleGen } from './card/card.style';
+import { getTimeInMins } from './utils/video.utils';
 
 function List() {
   const notes = useAppSelector((state) => state.notes);
@@ -41,7 +42,8 @@ function List() {
               id={note.id}
               onClick={(e) => clickhandler(note.id, note)}
             >
-              <div>@{note.time}</div>
+              <div>Time @ {getTimeInMins(note.time)}</div>
+
               <div dangerouslySetInnerHTML={{ __html: output(note) }} />
             </div>
           ))}

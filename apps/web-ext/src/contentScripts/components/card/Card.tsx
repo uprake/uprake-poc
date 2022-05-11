@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { tw } from 'twind';
 import {
   addNote,
   setActiveNote,
@@ -6,12 +7,12 @@ import {
   updateNote,
 } from '../../redux/features/notes/notesSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks/hooks';
-
 import Editor from '../Editor';
-import { getCurrentTimeStamp, skipVideoToTime } from '../utils/video.utils';
-import { IFrame } from '../IFrame';
-import { tw } from 'twind';
-import { isDev } from 'apps/web-ext/scripts/utils';
+import {
+  getCurrentTimeStamp,
+  getTimeInMins,
+  skipVideoToTime,
+} from '../utils/video.utils';
 import { styleGen } from './card.style';
 
 const initialContent = {
@@ -61,7 +62,8 @@ const getEmptyNote = (type: any = 'tbr') => {
 
 function Card({ isEditable, setIsEditable }: any) {
   const [currNote, setCurrNote] = useState<any>(emptyNote);
-  const [editorContent, setEditorContent] = useState<any>(initialContent);
+  const [editorContent, setEditorContent] = useState<any>(emptyContent);
+  // const [initEdContent, setInitEdContent] = useState<any>(initialContent);
   const notes = useAppSelector((state) => state.notes);
   const dispatch = useAppDispatch();
   const activeNote = useAppSelector((state) => state.notes.activeNote);
@@ -73,6 +75,9 @@ function Card({ isEditable, setIsEditable }: any) {
 
   const addNewNoteHandler = () => {
     console.log('addnewnotehandler');
+    console.log('currNote', currNote);
+    console.log('editorContent', editorContent);
+
     if (currNote.content?.content[0].content) {
       dispatch(
         addNote({
@@ -80,11 +85,11 @@ function Card({ isEditable, setIsEditable }: any) {
           id: notes.notes.length,
         })
       );
+      setEditorContent({ ...emptyContent });
+      setCurrNote(getEmptyNote());
     } else {
       alert('Empty note');
     }
-    setCurrNote(getEmptyNote());
-    setEditorContent(emptyContent);
   };
 
   const upateNoteHandler = () => {
@@ -92,7 +97,7 @@ function Card({ isEditable, setIsEditable }: any) {
     if (currNote.content?.content[0].content) {
       dispatch(updateNote(currNote));
     }
-    // setCurrNote(getEmptyNote());
+
     cancelNote();
   };
 
@@ -102,12 +107,12 @@ function Card({ isEditable, setIsEditable }: any) {
     if (currNote.id == -1) {
       addNewNoteHandler();
     } else {
-      // don't directly updateNoteHandler as at the end of this fun it will again setActiveNote .
+      // don't directly updateNoteHandler as at the end of this functn it will again setActiveNote .
       if (currNote.content?.content[0].content) {
         dispatch(updateNote(currNote));
       }
       setCurrNote(activeNote);
-      setEditorContent(activeNote.content);
+      setEditorContent({ ...activeNote.content });
     }
   };
   const toggleNoteType = (e: any) => {
@@ -136,12 +141,12 @@ function Card({ isEditable, setIsEditable }: any) {
       ...note,
       content: emptyContent,
     }));
-    setEditorContent(emptyContent);
+    setEditorContent({ ...emptyContent });
   };
   const cancelNote = () => {
+    setEditorContent({ ...emptyContent });
     dispatch(setActiveNote(null));
     setCurrNote(getEmptyNote());
-    setEditorContent(emptyContent);
   };
 
   useEffect(() => {
@@ -150,14 +155,20 @@ function Card({ isEditable, setIsEditable }: any) {
     }
     if (activeNote) {
       setCurrNote(activeNote);
-      setEditorContent(activeNote.content);
+      setEditorContent({ ...activeNote.content });
       skipVideoToTime(activeNote.time);
     }
   }, [activeNote]);
 
   useEffect(() => {
-    console.log(currNote);
-  }, [currNote]);
+    console.log('editorContent ', editorContent);
+    console.log('currNote ', currNote);
+    if (currNote.content == editorContent) {
+      console.log('same');
+    } else {
+      console.log('different');
+    }
+  }, [editorContent, currNote]);
   return (
     <div>
       Card
@@ -177,12 +188,13 @@ function Card({ isEditable, setIsEditable }: any) {
         </button>
         <button onClick={cancelNote}>Cancel</button>
       </div>
+      <div>Time @ {getTimeInMins(currNote.time)}</div>
       <div
         className={tw`h-full w-full py-5`}
         style={styleGen.point({ variant: currNote.noteType })}
       >
         <Editor
-          content={editorContent}
+          editorContent={editorContent}
           setCurrNote={setCurrNote}
           isEditable={isEditable}
         ></Editor>

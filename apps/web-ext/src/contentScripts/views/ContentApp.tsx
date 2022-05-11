@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { tw } from 'twind';
 import Dragable from '../components/dragable/Dragable';
+import List from '../components/List';
 declare global {
   interface Window {
     mouseX: number;
@@ -35,16 +36,13 @@ export const ContentApp = () => {
   return (
     <div className={tw`text-[16px]`}>
       ContentApp
-      {isEditable ? (
-        <Dragable
-          isEditable={isEditable}
-          setIsEditable={setIsEditable}
-          x={window.mouseX}
-          y={window.mouseY}
-        ></Dragable>
-      ) : (
-        <div>Non Editable</div>
-      )}
+      <Dragable
+        isEditable={isEditable}
+        setIsEditable={setIsEditable}
+        x={window.mouseX}
+        y={window.mouseY}
+      ></Dragable>
+      <List></List>
     </div>
   );
 };

@@ -1,20 +1,20 @@
 // import React from 'react'
 
+import Paragraph from '@tiptap/extension-paragraph';
 import { EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import { useEffect, useState } from 'react';
-
 import { IFrame } from './IFrame';
-
-import Paragraph from '@tiptap/extension-paragraph';
-import { style, styleGen } from './card/card.style';
 
 interface PointsProp {
   type: 'tbr' | 'mpr' | 'point';
   isEditable: boolean;
 }
 
-function Editor({ content, setCurrNote, isEditable }: any) {
+function Editor({ editorContent, setCurrNote, isEditable }: any) {
+  const [iframeRef, setIframeRef] = useState<any>(null);
+
+  console.log('editor rendered');
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -35,7 +35,7 @@ function Editor({ content, setCurrNote, isEditable }: any) {
     // setScrolling,
     onCreate({ editor }: any) {
       // console.log('created');
-      // editor.commands.focus('end');
+      editor.commands.focus('end');
     },
 
     onFocus({}) {
@@ -44,7 +44,7 @@ function Editor({ content, setCurrNote, isEditable }: any) {
     onBlur({}) {
       console.log('blured');
     },
-    content: content,
+    content: editorContent,
     onUpdate({ editor }: any) {
       //
       // save content in the browser storage\
@@ -56,29 +56,21 @@ function Editor({ content, setCurrNote, isEditable }: any) {
     },
   });
 
-  // useEffect(()=>{
-
-  // } , [note])
-
-  console.log('rerender points');
   useEffect(() => {
+    console.log('focused');
     editor?.commands.focus('end');
-    editor?.commands;
   }, [isEditable]);
 
   useEffect(() => {
-    editor?.commands.setContent(content);
-  }, [content]);
+    editor?.commands.setContent(editorContent);
+  }, [editorContent]);
 
-  // useEffect(()=>{
-  //   if(destroyEditor){
-  //     editor?.commands.destroy()
-  //   }
-  // } , [destroyEditor])
   return (
     <>
-      <IFrame>
-        <div id="editorWrapper">
+      <IFrame
+      //   iframeRef={iframeRef} setIframeRef={setIframeRef}
+      >
+        <div id="editorWrapper" style={{ height: '100%' }}>
           <EditorContent id="editorContent" editor={editor} />
         </div>
       </IFrame>

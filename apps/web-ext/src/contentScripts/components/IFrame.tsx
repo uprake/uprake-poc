@@ -1,18 +1,27 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-export const IFrame = ({ children, style, ...props }: any) => {
-  const [contentRef, setContentRef] = useState<any>(null);
-  const mountNode = contentRef?.contentWindow?.document?.body;
+export const IFrame = ({
+  children,
+  style,
+  //   iframeRef,
+  //   setIframeRef,
+  ...props
+}: any) => {
+  const [iframeRef, setIframeRef] = useState<any>(null);
+  const mountNode = iframeRef?.contentWindow?.document?.body;
+
+  console.log('iframe rendered');
+
   useEffect(() => {
-    console.log(contentRef);
-    contentRef && (contentRef.contentWindow.document.body.style.margin = '0');
-    if (contentRef) {
+    console.log(iframeRef);
+    iframeRef && (iframeRef.contentWindow.document.body.style.margin = '0');
+    if (iframeRef) {
       // not focusing properly
       mountNode.style.margin = '0';
-      contentRef?.contentWindow?.focus();
+      iframeRef?.contentWindow?.focus();
     }
-  }, [contentRef]);
+  }, [iframeRef]);
   return (
     <>
       <iframe
@@ -26,7 +35,7 @@ export const IFrame = ({ children, style, ...props }: any) => {
           overflow: 'auto',
           fontSize: '26px !important',
         }}
-        ref={setContentRef}
+        ref={setIframeRef}
       >
         <style type="text/css">
           {`body , html {
