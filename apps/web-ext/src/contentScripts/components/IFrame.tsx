@@ -11,10 +11,7 @@ export const IFrame = ({
   //   const [iframeRef, setIframeRef] = useState<any>(null);
   const mountNode = iframeRef?.contentWindow?.document?.body;
 
-  console.log('iframe rendered');
-
   useEffect(() => {
-    console.log(iframeRef);
     iframeRef && (iframeRef.contentWindow.document.body.style.margin = '0');
     if (iframeRef) {
       // not focusing properly

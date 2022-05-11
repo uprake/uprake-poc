@@ -35,9 +35,7 @@ const notesSlice = createSlice({
     updateNote: (state, { payload }) => {
       // const note = state.notes.find((note: any) => note.id == payload.id);
       if (payload.content?.content[0].content) {
-        console.log(payload);
         const index = state.notes.findIndex((el: any) => el.id == payload.id);
-        console.log(state.notes[index]);
         state.notes[index] = payload;
       }
 
@@ -49,13 +47,11 @@ const notesSlice = createSlice({
     },
     toggleVisible: (state) => {
       state.isVisible = !state.isVisible;
-      console.log(state.isVisible);
     },
     setActiveNoteId: (state, { payload }) => {
       state.activeNoteId = payload;
     },
     setActiveNote: (state, { payload }) => {
-      console.log('payload', payload);
       state.activeNote = payload;
     },
   },

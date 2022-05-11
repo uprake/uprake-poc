@@ -34,10 +34,6 @@ function Card({ isEditable, setIsEditable }: ICardProps) {
   // also with the time at that moment
 
   const addNewNoteHandler = () => {
-    console.log('addnewnotehandler');
-    console.log('currNote', currNote);
-    console.log('editorContent', editorContent);
-
     if (
       currNote.content?.content?.length &&
       currNote.content?.content[0].content
@@ -56,7 +52,6 @@ function Card({ isEditable, setIsEditable }: ICardProps) {
   };
 
   const upateNoteHandler = () => {
-    console.log(currNote);
     if (
       currNote.content?.content?.length &&
       currNote.content?.content[0].content
@@ -68,8 +63,6 @@ function Card({ isEditable, setIsEditable }: ICardProps) {
   };
 
   const addNoteHandler = () => {
-    console.log('addnotehandler called');
-
     if (currNote.id == -1) {
       addNewNoteHandler();
     } else {
@@ -85,7 +78,6 @@ function Card({ isEditable, setIsEditable }: ICardProps) {
     }
   };
   const toggleNoteType = (e: any) => {
-    console.log(e.target.id);
     if (e.target.id != 'ss') {
       setCurrNote((note: INote) => ({
         ...note,
@@ -94,7 +86,6 @@ function Card({ isEditable, setIsEditable }: ICardProps) {
     }
   };
   const syncTimeHandler = () => {
-    console.log(getCurrentTimeStamp());
     setCurrNote((note: INote) => ({
       ...note,
       time: getCurrentTimeStamp(),
@@ -132,15 +123,6 @@ function Card({ isEditable, setIsEditable }: ICardProps) {
     }
   }, [activeNote]);
 
-  useEffect(() => {
-    console.log('editorContent ', editorContent);
-    console.log('currNote ', currNote);
-    if (currNote.content == editorContent) {
-      console.log('same');
-    } else {
-      console.log('different');
-    }
-  }, [editorContent, currNote]);
   return (
     <div>
       Card

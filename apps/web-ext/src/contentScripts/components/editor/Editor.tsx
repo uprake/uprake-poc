@@ -16,7 +16,6 @@ interface PointsProp {
 function Editor({ editorContent, setCurrNote, isEditable }: IEditorProps) {
   const [iframeRef, setIframeRef] = useState<any>(null);
 
-  console.log('editor rendered');
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -41,10 +40,10 @@ function Editor({ editorContent, setCurrNote, isEditable }: IEditorProps) {
     },
 
     onFocus({}) {
-      console.log('focused');
+      // console.log('focused');
     },
     onBlur({}) {
-      console.log('blured');
+      // console.log('blured');
     },
     content: editorContent,
     onUpdate({ editor }: any) {

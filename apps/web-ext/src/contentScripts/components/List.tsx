@@ -2,6 +2,7 @@ import Paragraph from '@tiptap/extension-paragraph';
 import { generateHTML } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import React, { useEffect } from 'react';
+import { tw } from 'twind';
 import { INote } from '../interfaces/shared.interace';
 import {
   setActiveNote,
@@ -28,9 +29,7 @@ function List() {
   const clickhandler = (note: INote) => {
     dispatch(setActiveNote(note));
   };
-  useEffect(() => {
-    console.log(activeNote);
-  }, [activeNote]);
+
   return (
     <div>
       {notes.isVisible ? (
@@ -43,9 +42,11 @@ function List() {
               id={note.id.toString()}
               onClick={(e) => clickhandler(note)}
             >
-              <div>Time @ {getTimeInMins(note.time)}</div>
+              <div>
+                <div>@ {getTimeInMins(note.time)}</div>
 
-              <div dangerouslySetInnerHTML={{ __html: output(note) }} />
+                <div dangerouslySetInnerHTML={{ __html: output(note) }} />
+              </div>
             </div>
           ))}
         </div>
