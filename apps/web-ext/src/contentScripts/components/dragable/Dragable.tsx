@@ -15,6 +15,7 @@ function Dragable({
   x = 0,
   y = 0,
 }: IDragableProps) {
+  console.log('Dragable rendered');
   const editorRef = useRef<any>();
 
   useEffect(() => {

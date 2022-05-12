@@ -25,6 +25,8 @@ import { ICardProps } from './card.interface';
 import { styleGen } from './card.style';
 
 function Card({ isEditable, setIsEditable, currUrl }: ICardProps) {
+  console.log('Card rendered');
+
   // const [windowhref, setWindowHref] = useState(getUTVideoIdFromUrl());
 
   const [currNote, setCurrNote] = useState<INote>(emptyNote);
@@ -130,11 +132,15 @@ function Card({ isEditable, setIsEditable, currUrl }: ICardProps) {
   }, [activeNote]);
 
   useEffect(() => {
-    getAllNotesFromFirebase()
-      .then((res: any) => {
-        dispatch(setMultipleNotes(res));
-      })
-      .catch((err) => console.log(err));
+    if (currUrl !== '') {
+      getAllNotesFromFirebase()
+        .then((res: any) => {
+          dispatch(setMultipleNotes(res));
+          setEditorContent({ ...emptyContent });
+          setCurrNote(getEmptyNote());
+        })
+        .catch((err) => console.log(err));
+    }
   }, [currUrl]);
 
   // useEffect(() => {

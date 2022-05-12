@@ -13,6 +13,8 @@ declare global {
 export const ContentApp = () => {
   const [isEditable, setIsEditable] = useState(false);
   const [currUrl, setCurrUrl] = useState('');
+
+  // const [reRender, setReRender] = useState(true);
   //
   // const location = useLocation();
 
@@ -49,7 +51,9 @@ export const ContentApp = () => {
         case 'urlChanged':
           console.log('url changed', request.changeInfo);
           // console.log(window.location.href);
+          // setReRender(false);
           setCurrUrl(request.changeInfo.url);
+          // setReRender(true);
           break;
         case 'toggleEditor':
           toggleEditor();
@@ -68,14 +72,16 @@ export const ContentApp = () => {
     <div className={tw`text-[16px]`}>
       ContentApp
       {/* If the url changes then rerender the whole components anew */}
-      <Dragable
-        currUrl={currUrl}
-        isEditable={isEditable}
-        setIsEditable={setIsEditable}
-        x={window.mouseX}
-        y={window.mouseY}
-      ></Dragable>
-      <List></List>
+      <>
+        <Dragable
+          currUrl={currUrl}
+          isEditable={isEditable}
+          setIsEditable={setIsEditable}
+          x={window.mouseX}
+          y={window.mouseY}
+        ></Dragable>
+        <List></List>
+      </>
     </div>
   );
 };

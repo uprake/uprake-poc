@@ -14,6 +14,7 @@ import { styleGen } from './card/card.style';
 import { getTimeInMins } from './utils/video.utils';
 
 function List() {
+  console.log('List rendered');
   const notes = useAppSelector((state) => state.notes);
   const activeNote = useAppSelector((state) => state.notes.activeNote);
   const dispatch = useAppDispatch();
