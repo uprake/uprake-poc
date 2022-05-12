@@ -1,6 +1,7 @@
 import { nanoid } from '@reduxjs/toolkit';
 import { JSONContent } from '@tiptap/react';
 import React, { useEffect, useState } from 'react';
+import { windowWhen } from 'rxjs';
 import { tw } from 'twind';
 import { getAllNotesFromFirebase } from '~/contentScripts/firebase/firebase.utils';
 import { INote } from '~/contentScripts/interfaces/shared.interace';
@@ -17,12 +18,15 @@ import Editor from '../editor/Editor';
 import {
   getCurrentTimeStamp,
   getTimeInMins,
+  getUTVideoIdFromUrl,
   skipVideoToTime,
 } from '../utils/video.utils';
 import { ICardProps } from './card.interface';
 import { styleGen } from './card.style';
 
-function Card({ isEditable, setIsEditable }: ICardProps) {
+function Card({ isEditable, setIsEditable, currUrl }: ICardProps) {
+  // const [windowhref, setWindowHref] = useState(getUTVideoIdFromUrl());
+
   const [currNote, setCurrNote] = useState<INote>(emptyNote);
   const [editorContent, setEditorContent] = useState<JSONContent>(emptyContent);
   const notes = useAppSelector((state) => state.notes);
@@ -126,10 +130,16 @@ function Card({ isEditable, setIsEditable }: ICardProps) {
   }, [activeNote]);
 
   useEffect(() => {
-    getAllNotesFromFirebase().then((res: any) => {
-      dispatch(setMultipleNotes(res));
-    });
-  }, []);
+    getAllNotesFromFirebase()
+      .then((res: any) => {
+        dispatch(setMultipleNotes(res));
+      })
+      .catch((err) => console.log(err));
+  }, [currUrl]);
+
+  // useEffect(() => {
+  //   console.log('url changed', window.location.href);
+  // }, [window.location.href]);
   return (
     <div>
       Card

@@ -47,8 +47,8 @@ export const getAllNotesFromFirebase = () => {
   return getDoc(videoNotesRef)
     .then((res: any) => {
       //   setAllNotes(res.data().notes);
-      console.log(res.data().notes);
-      return res.data().notes;
+      console.log(res.data()?.notes);
+      return res.data()?.notes ?? [];
     })
     .catch((err: any) => {
       console.log(err);

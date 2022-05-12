@@ -8,7 +8,13 @@ import {
 import { IDragableProps } from './dragable.interface';
 import { dragableStyle } from './dragable.style';
 
-function Dragable({ isEditable, setIsEditable, x = 0, y = 0 }: IDragableProps) {
+function Dragable({
+  isEditable,
+  setIsEditable,
+  currUrl,
+  x = 0,
+  y = 0,
+}: IDragableProps) {
   const editorRef = useRef<any>();
 
   useEffect(() => {
@@ -37,7 +43,11 @@ function Dragable({ isEditable, setIsEditable, x = 0, y = 0 }: IDragableProps) {
           minWidth={320}
           bounds="window"
         >
-          <Card isEditable={isEditable} setIsEditable={setIsEditable}></Card>
+          <Card
+            currUrl={currUrl}
+            isEditable={isEditable}
+            setIsEditable={setIsEditable}
+          ></Card>
         </Rnd>
       </div>
     </div>

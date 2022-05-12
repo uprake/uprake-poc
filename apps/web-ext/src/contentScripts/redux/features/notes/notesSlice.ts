@@ -60,8 +60,8 @@ const notesSlice = createSlice({
       updateNotesInFirebase(current(state.notes));
     },
     setMultipleNotes: (state, { payload }) => {
+      console.log('payload', payload);
       state.notes = payload;
-
       state.notes.sort(function (a: any, b: any) {
         return a.time - b.time;
       });
