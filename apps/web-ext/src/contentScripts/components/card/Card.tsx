@@ -1,7 +1,6 @@
 import { nanoid } from '@reduxjs/toolkit';
 import { JSONContent } from '@tiptap/react';
 import React, { useEffect, useState } from 'react';
-import { windowWhen } from 'rxjs';
 import { tw } from 'twind';
 import { getAllNotesFromFirebase } from '~/contentScripts/firebase/firebase.utils';
 import { INote } from '~/contentScripts/interfaces/shared.interace';
@@ -18,7 +17,6 @@ import Editor from '../editor/Editor';
 import {
   getCurrentTimeStamp,
   getTimeInMins,
-  getUTVideoIdFromUrl,
   skipVideoToTime,
 } from '../utils/video.utils';
 import { ICardProps } from './card.interface';
@@ -26,8 +24,6 @@ import { styleGen } from './card.style';
 
 function Card({ isEditable, setIsEditable, currUrl }: ICardProps) {
   console.log('Card rendered');
-
-  // const [windowhref, setWindowHref] = useState(getUTVideoIdFromUrl());
 
   const [currNote, setCurrNote] = useState<INote>(emptyNote);
   const [editorContent, setEditorContent] = useState<JSONContent>(emptyContent);
@@ -75,12 +71,7 @@ function Card({ isEditable, setIsEditable, currUrl }: ICardProps) {
     } else {
       // don't directly updateNoteHandler as at the end of this functn it will again setActiveNote .
 
-      // if (
-      //   currNote.content?.content?.length &&
-      //   currNote.content?.content[0].content
-      // ) {
       dispatch(updateNote(currNote));
-      // }
       setCurrNote(activeNote);
       setEditorContent({ ...activeNote.content });
     }
@@ -143,9 +134,6 @@ function Card({ isEditable, setIsEditable, currUrl }: ICardProps) {
     }
   }, [currUrl]);
 
-  // useEffect(() => {
-  //   console.log('url changed', window.location.href);
-  // }, [window.location.href]);
   return (
     <div>
       Card

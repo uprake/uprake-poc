@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import { tw } from 'twind';
 import Dragable from '../components/dragable/Dragable';
 import List from '../components/List';
@@ -14,15 +13,6 @@ export const ContentApp = () => {
   const [isEditable, setIsEditable] = useState(false);
   const [currUrl, setCurrUrl] = useState('');
 
-  // const [reRender, setReRender] = useState(true);
-  //
-  // const location = useLocation();
-
-  // useEffect(() => {
-  //   console.log('Location changed');
-  // }, [location]);
-  // //
-
   const toggleEditor = () => {
     setIsEditable((a) => !a);
   };
@@ -36,24 +26,15 @@ export const ContentApp = () => {
     // setUrl first time page loaded
     setCurrUrl(window.location.href);
 
-    // toggle-editor listner
     browser.runtime.onMessage.addListener(function (
       request: any,
       sender: any,
       sendResponse: any
     ) {
-      // console.log('request-action', request);
-      // if (request.action === 'toggleEditor') {
-      //   toggleEditor();
-      // }
-
       switch (request.action) {
         case 'urlChanged':
           console.log('url changed', request.changeInfo);
-          // console.log(window.location.href);
-          // setReRender(false);
           setCurrUrl(request.changeInfo.url);
-          // setReRender(true);
           break;
         case 'toggleEditor':
           toggleEditor();
@@ -62,8 +43,6 @@ export const ContentApp = () => {
           console.log('onMEssage called');
       }
     });
-
-    // url changed listner
   }, []);
 
   console.log('contentApp rerenderd');

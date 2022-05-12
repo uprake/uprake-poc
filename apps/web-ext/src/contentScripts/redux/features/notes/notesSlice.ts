@@ -52,7 +52,6 @@ const notesSlice = createSlice({
         const index = state.notes.findIndex((el: any) => el.id == payload.id);
         state.notes[index] = payload;
       }
-      // console.log(current(state.notes));
       state.notes.sort(function (a: any, b: any) {
         return a.time - b.time;
       });
