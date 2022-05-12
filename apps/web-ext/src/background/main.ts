@@ -1,7 +1,8 @@
 import { sendMessage } from 'webext-bridge';
-import { Tabs } from 'webextension-polyfill';
-import browser from 'webextension-polyfill';
-import { commandListener } from './commandListner';
+import Browser from 'webextension-polyfill';
+import browser, { Tabs } from 'webextension-polyfill';
+import { bgListeners } from './bgListeners';
+import { commandsListener } from './commandsListner';
 
 // only on dev mode
 if (import.meta.hot) {
@@ -56,10 +57,42 @@ browser.tabs.onActivated.addListener(async ({ tabId }) => {
 //     };
 //   }
 // });
-commandListener();
+
 browser.runtime.onMessage.addListener((data: any) => {
   if (data.type === 'content-script') {
     return Promise.resolve(data.msg + 'received thru background');
   }
   return;
 });
+
+// keyboard command listners
+commandsListener();
+// listners from bg-scripts
+// bgListeners();
+
+Browser.tabs.onUpdated.addListener(function (tabId, changeInfo, tab: any) {
+  // read changeInfo data and do something with it
+  // like send the new url to contentscripts.js
+  // if (changeInfo.url) {
+  console.log('changeInfo', changeInfo);
+  if (changeInfo.url) {
+    Browser.tabs
+      .query({ active: true, currentWindow: true })
+      .then((tabs: any) => {
+        Browser.tabs
+          .sendMessage(tabs[0].id, {
+            action: 'urlChanged',
+            changeInfo: changeInfo,
+          })
+          .then((res: any) => {
+            console.log(res);
+          });
+      });
+  }
+
+  // }
+});
+
+// Browser.tabs.onUpdated.addListener(function (tabId, changeInfo, tab: any) {
+//   alert('updated from background');
+// });

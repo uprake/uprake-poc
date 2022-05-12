@@ -3,7 +3,6 @@
 import Paragraph from '@tiptap/extension-paragraph';
 import { EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
-import { doc } from 'prettier';
 import { useEffect, useState } from 'react';
 import { IFrame } from '../IFrame';
 import { IEditorProps } from './editor.interface';
@@ -28,7 +27,6 @@ function Editor({ editorContent, setCurrNote, isEditable }: IEditorProps) {
     injectCSS: false,
     editorProps: {
       attributes: {
-        // style: 'outline: none',
         style: 'height : 100% ; outline: none',
       },
     },

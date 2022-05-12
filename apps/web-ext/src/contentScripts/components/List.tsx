@@ -1,20 +1,16 @@
 import Paragraph from '@tiptap/extension-paragraph';
 import { generateHTML } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
-import React, { useEffect } from 'react';
-import { tw } from 'twind';
+import React from 'react';
 import { INote } from '../interfaces/shared.interace';
-import {
-  setActiveNote,
-  setActiveNoteId,
-} from '../redux/features/notes/notesSlice';
+import { deleteNote, setActiveNote } from '../redux/features/notes/notesSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks/hooks';
 import { styleGen } from './card/card.style';
 import { getTimeInMins } from './utils/video.utils';
 
 function List() {
+  console.log('List rendered');
   const notes = useAppSelector((state) => state.notes);
-  const activeNote = useAppSelector((state) => state.notes.activeNote);
   const dispatch = useAppDispatch();
   const output = (note: INote) => {
     return generateHTML(note.content, [
@@ -28,6 +24,10 @@ function List() {
   };
   const clickhandler = (note: INote) => {
     dispatch(setActiveNote(note));
+  };
+  const deleteNoteHandler = (note: INote) => {
+    console.log('delete called');
+    dispatch(deleteNote(note));
   };
 
   return (
@@ -43,7 +43,12 @@ function List() {
               onClick={(e) => clickhandler(note)}
             >
               <div>
-                <div>@ {getTimeInMins(note.time)}</div>
+                <div>
+                  <div>@ {getTimeInMins(note.time)}</div>
+                  <button onClick={(e: any) => deleteNoteHandler(note)}>
+                    X
+                  </button>
+                </div>
 
                 <div dangerouslySetInnerHTML={{ __html: output(note) }} />
               </div>
