@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { tw } from 'twind';
+import Browser from 'webextension-polyfill';
+import { authScripts } from '../authScripts';
 import Dragable from '../components/dragable/Dragable';
 import List from '../components/List';
 declare global {
@@ -22,6 +24,22 @@ export const ContentApp = () => {
       window.mouseX = e.clientX;
       window.mouseY = e.clientY;
     };
+
+    // browser.storage.local.set({ second: 'storage from content-scripts' });
+    // browser.storage.local.get();
+    // console.log('browser', browser.storage);
+    // console.log('Browser', Browser.storage);
+    // Browser.cookies
+    //   .getAllCookieStores()
+    //   .then((res: any) => {
+    //     console.log(res);
+    //   })
+    //   .catch((err: any) => {
+    //     console.log(err);
+    //   });
+
+    //auth script
+    authScripts();
 
     // setUrl first time page loaded
     setCurrUrl(window.location.href);

@@ -1,6 +1,6 @@
 {
   "name": "@uprake/webext",
-  "displayName": "Vitesse WebExt",
+  "displayName": "Uprake Extension",
   "version": "0.0.1",
   "description": "[description]",
   "private": true,

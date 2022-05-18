@@ -19,6 +19,7 @@ import {
   getTimeInMins,
   skipVideoToTime,
 } from '../utils/video.utils';
+import { ScreenShot } from '../youtube-ss/ScreenShot';
 import { ICardProps } from './card.interface';
 import { styleGen } from './card.style';
 
@@ -147,7 +148,8 @@ function Card({ isEditable, setIsEditable, currUrl }: ICardProps) {
         <button id="point" onClick={toggleNoteType}>
           POINT
         </button>
-        <button id="ss">SS</button>
+        {/* <button id="ss">SS</button> */}
+        <ScreenShot></ScreenShot>
         <button id="sync" onClick={syncTimeHandler}>
           sync
         </button>

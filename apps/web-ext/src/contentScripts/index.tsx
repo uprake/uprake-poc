@@ -1,9 +1,12 @@
 /* eslint-disable no-console */
+import Cookies from 'js-cookie';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { setup, tw } from 'twind';
 import { onMessage } from 'webext-bridge';
+import Browser, { cookies } from 'webextension-polyfill';
+import AuthGuard from './components/guards/AuthGuard';
 import { store } from './redux/store/store';
 import { ContentApp } from './views/ContentApp';
 
@@ -52,10 +55,25 @@ setup({
   container.appendChild(root);
   document.body.prepend(container);
 
+  //
+
+  localStorage.setItem('content-2', window.location.href);
+  // script for cookies n auth
+  // Browser?.cookies
+  //   .getAllCookieStores()
+  //   .then((res: any) => {
+  //     console.log(res);
+  //   })
+  //   .catch((err: any) => {
+  //     console.log(err);
+  //   });
+
   ReactDOM.render(
     <React.StrictMode>
       <Provider store={store}>
-        <ContentApp />
+        <AuthGuard>
+          <ContentApp />
+        </AuthGuard>
       </Provider>
     </React.StrictMode>,
     root

@@ -1,8 +1,11 @@
 import { sendMessage } from 'webext-bridge';
-import Browser from 'webextension-polyfill';
-import browser, { Tabs } from 'webextension-polyfill';
-import { bgListeners } from './bgListeners';
-import { commandsListener } from './commandsListner';
+import {
+  default as Browser,
+  default as browser,
+  Tabs,
+} from 'webextension-polyfill';
+import { commandsListener } from './commandsListener';
+import { contentScriptListener } from './contentScriptListener';
 
 // only on dev mode
 if (import.meta.hot) {
@@ -67,6 +70,9 @@ browser.runtime.onMessage.addListener((data: any) => {
 
 // keyboard command listners
 commandsListener();
+//contentScript listeners
+contentScriptListener();
+
 // listners from bg-scripts
 // bgListeners();
 
@@ -96,3 +102,8 @@ Browser.tabs.onUpdated.addListener(function (tabId, changeInfo, tab: any) {
 // Browser.tabs.onUpdated.addListener(function (tabId, changeInfo, tab: any) {
 //   alert('updated from background');
 // });
+
+// localStorage.setItem('background', 'backgroud - 1 ');
+localStorage.setItem('backgroud-url', window.location.href);
+// browser.storage.local.set({ authInfo: 'user' });
+// windows.content.localStorage.setItem

@@ -31,13 +31,23 @@ export async function getManifest() {
       48: './assets/icon-512.png',
       128: './assets/icon-512.png',
     },
-    permissions: ['tabs', 'storage', 'activeTab', 'http://*/', 'https://*/'],
+    permissions: [
+      'tabs',
+      'storage',
+      'cookies',
+      'activeTab',
+      'http://*/',
+      'https://*/',
+    ],
     content_scripts: [
       {
         matches: ['http://*/*', 'https://*/*'],
         js: ['./dist/contentScripts/index.global.js'],
       },
     ],
+    // externally_connectable: {
+    //   matches: ['https://example1.com/*', '*://*.example2.com/*'],
+    // },
     web_accessible_resources: ['dist/contentScripts/style.css'],
     commands: {
       'toggle-editor': {
