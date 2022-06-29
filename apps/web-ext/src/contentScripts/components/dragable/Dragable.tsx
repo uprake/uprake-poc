@@ -18,12 +18,12 @@ function Dragable({
   console.log('Dragable rendered');
   const editorRef = useRef<any>();
 
-  useEffect(() => {
-    editorRef.current.updatePosition({
-      x: getEditorPositionX(x, editorRef),
-      y: getEditorPositionY(y, editorRef),
-    });
-  }, [isEditable]);
+  // useEffect(() => {
+  //   editorRef.current.updatePosition({
+  //     x: getEditorPositionX(x, editorRef),
+  //     y: getEditorPositionY(y, editorRef),
+  //   });
+  // }, [isEditable]);
   return (
     <div>
       Draggable

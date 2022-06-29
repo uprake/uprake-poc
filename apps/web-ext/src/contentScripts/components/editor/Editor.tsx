@@ -27,7 +27,8 @@ function Editor({ editorContent, setCurrNote, isEditable }: IEditorProps) {
     injectCSS: false,
     editorProps: {
       attributes: {
-        style: 'height : 100% ; outline: none',
+        style:
+          'height : 100% ; outline: none ; white-space : pre-wrap ;word-wrap: break-word',
       },
     },
     autofocus: 'end',
@@ -66,9 +67,9 @@ function Editor({ editorContent, setCurrNote, isEditable }: IEditorProps) {
   return (
     <>
       <IFrame
-        //
-        iframeRef={iframeRef}
-        setIframeRef={setIframeRef}
+      //
+      // iframeRef={iframeRef}
+      // setIframeRef={setIframeRef}
       >
         <div id="editorWrapper" style={{ height: '100%' }}>
           <EditorContent id="editorContent" editor={editor} />
